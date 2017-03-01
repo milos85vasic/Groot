@@ -1,9 +1,27 @@
-apply plugin: "groot"
+apply plugin: 'groovy'
 
-task showPlugins {
-    doLast {
-        project.plugins.each {
-            println it.getClass().name
+dependencies {
+    compile gradleApi()
+    compile localGroovy()
+}
+
+apply plugin: 'maven'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile 'junit:junit:4.12'
+}
+
+group = 'org.gradle'
+version = '1.0-SNAPSHOT'
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: uri('../repo'))
         }
     }
 }
