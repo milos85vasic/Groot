@@ -2,6 +2,7 @@
 .gradle
 build/
 gradle*
+repo
 
 # Ignore Gradle GUI config
 gradle-app.setting

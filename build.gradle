@@ -30,7 +30,8 @@ dependencies {
     testCompile "org.jetbrains.kotlin:kotlin-test-junit:$kotlinVersion"
 }
 
-sourceSets.main.kotlin.srcDirs += 'src/main/java'
+sourceSets.main.java.srcDirs += 'src/main/java'
 sourceSets.main.kotlin.srcDirs += 'src/main/kotlin'
+sourceSets.main.groovy.srcDirs += 'src/main'
 sourceSets.main.kotlin.srcDirs += 'build/generated-src/java'
 sourceSets.main.kotlin.srcDirs += 'build/generated-src/kotlin'

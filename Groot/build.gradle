@@ -15,6 +15,7 @@ dependencies {
     testCompile 'junit:junit:4.12'
 }
 
+
 group = 'net.milosvasic.gradle'
 version = '1.0-SNAPSHOT'
 
@@ -24,4 +25,10 @@ uploadArchives {
             repository(url: uri('../repo'))
         }
     }
+}
+
+assemble.finalizedBy(uploadArchives)
+
+artifacts {
+    jar
 }
