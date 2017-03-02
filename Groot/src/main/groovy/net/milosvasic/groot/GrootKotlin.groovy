@@ -7,8 +7,7 @@ import org.gradle.api.Project
 class GrootKotlin implements Plugin<Project> {
 
     void apply(Project project) {
-//        project.extensions.create("kotlin", KotlinDefinition)
-        String version = "1.0.6"
+        String version = "1.1.0"
         project.apply(plugin: "java")
         project.apply(plugin: "kotlin")
         project.buildscript {
@@ -16,8 +15,6 @@ class GrootKotlin implements Plugin<Project> {
                 jcenter()
                 mavenCentral()
             }
-//            dependencies.classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$version"
-//            dependencies.classpath "org.jetbrains.kotlin:kotlin-reflect:$version"
         }
         project.repositories {
             jcenter()
@@ -39,6 +36,7 @@ class GrootKotlin implements Plugin<Project> {
         project.sourceSets.main.kotlin.srcDirs += 'build/generated-src/kotlin'
 
 
+//        project.extensions.create("kotlin", KotlinDefinition)
 
 //        project.task('hello') {
 //            doLast {
