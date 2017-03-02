@@ -4,7 +4,7 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 
 
-class Groot implements Plugin<Project> {
+class GrootKotlin implements Plugin<Project> {
 
     void apply(Project project) {
 //        project.extensions.create("kotlin", KotlinDefinition)
