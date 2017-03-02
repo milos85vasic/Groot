@@ -2,6 +2,7 @@
 .gradle
 build/
 gradle*
+!gradle-plugins*
 repo
 
 # Ignore Gradle GUI config
