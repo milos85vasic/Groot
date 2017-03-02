@@ -20,7 +20,19 @@ class GrootKotlinApplication implements Plugin<Project> {
         }
 
         void setup(String versionPackage) {
-            println(">>>> " + versionPackage)
+            setup(versionPackage, "MainKt")
+        }
+
+        void setup(String versionPackage, String mainClass) {
+            project.apply(plugin: "application")
+            project.mainClassName = "${versionPackage}.$mainClass"
+            println("mainClassName: ${project.mainClassName}")
+            project.jar {
+                manifest.attributes "Main-Class": "${project.mainClassName}"
+                from {
+                    project.configurations.compile.collect { it.isDirectory() ? it : project.zipTree(it) }
+                }
+            }
         }
     }
 

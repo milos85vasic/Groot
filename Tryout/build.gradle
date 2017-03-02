@@ -12,17 +12,5 @@ buildscript {
 apply plugin: "groot-kotlin"
 apply plugin: "groot-kotlin-application"
 
-application.setup("Sss")
-
-//mainClassName = "net.milosvasic.try.groot.MainKt"
-//println("mainClassName: $mainClassName")
-//jar {
-//    manifest {
-//        attributes "Main-Class": "$mainClassName"
-//    }
-//
-//    from {
-//        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
-//    }
-//}
+application.setup("net.milosvasic.try.groot")
 
