@@ -1,6 +1,4 @@
 apply plugin: "java"
-apply plugin: "kotlin"
-apply plugin: "application"
 
 buildscript {
     ext.kotlinVersion = "1.0.6"
@@ -11,6 +9,9 @@ buildscript {
     dependencies.classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
     dependencies.classpath "org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion"
 }
+
+apply plugin: "kotlin"
+apply plugin: "application"
 
 repositories {
     jcenter()

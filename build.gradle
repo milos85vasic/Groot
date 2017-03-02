@@ -1,6 +1,4 @@
 apply plugin: "java"
-apply plugin: "kotlin"
-apply plugin: "groovy"
 
 buildscript {
     ext.kotlinVersion = "1.0.6"
@@ -11,6 +9,9 @@ buildscript {
     dependencies.classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
     dependencies.classpath "org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion"
 }
+
+apply plugin: "kotlin"
+apply plugin: "groovy"
 
 repositories {
     jcenter()
@@ -32,6 +33,5 @@ dependencies {
 
 sourceSets.main.java.srcDirs += 'src/main/java'
 sourceSets.main.kotlin.srcDirs += 'src/main/kotlin'
-sourceSets.main.groovy.srcDirs += 'src/main'
 sourceSets.main.kotlin.srcDirs += 'build/generated-src/java'
 sourceSets.main.kotlin.srcDirs += 'build/generated-src/kotlin'
