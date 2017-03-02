@@ -33,6 +33,12 @@ class Groot implements Plugin<Project> {
             testCompile "org.jetbrains.kotlin:kotlin-test:$version"
             testCompile "org.jetbrains.kotlin:kotlin-test-junit:$version"
         }
+        project.sourceSets.main.kotlin.srcDirs += 'src/main/java'
+        project.sourceSets.main.kotlin.srcDirs += 'src/main/kotlin'
+        project.sourceSets.main.kotlin.srcDirs += 'build/generated-src/java'
+        project.sourceSets.main.kotlin.srcDirs += 'build/generated-src/kotlin'
+
+
 
 //        project.task('hello') {
 //            doLast {
