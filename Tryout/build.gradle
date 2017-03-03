@@ -11,7 +11,6 @@ buildscript {
 
 apply plugin: "groot"
 apply plugin: "groot-kotlin"
-apply plugin: "groot-deploy"
 
 groot.registerRepository("http://repo.milosvasic.net/releases")
 groot.registerRepository("http://repo.milosvasic.net/development")
@@ -39,3 +38,4 @@ groot.kotlin.project.setup(
 
 String fullPackage = groot.kotlin.project.projectPackage
 groot.kotlin.application.setup(fullPackage)
+groot.setupDeployment()

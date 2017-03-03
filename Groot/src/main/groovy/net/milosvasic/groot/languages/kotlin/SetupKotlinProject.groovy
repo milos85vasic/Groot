@@ -10,6 +10,7 @@ class SetupKotlinProject {
     private Project project
     public String projectGroup
     public String projectPackage
+    public String projectVersion;
 
     SetupKotlinProject(Project project) {
         this.project = project
@@ -50,6 +51,7 @@ class SetupKotlinProject {
             project.version += "_${System.currentTimeMillis()}"
         }
         project.jar.archiveName = project.name + "_V" + project.version + ".jar"
+        projectVersion = project.version
 
         StringBuilder packageStructure = new StringBuilder()
         for (String item : this.projectPackage.split("\\.")) {
