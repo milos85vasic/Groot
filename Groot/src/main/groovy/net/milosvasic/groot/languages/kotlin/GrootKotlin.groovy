@@ -1,4 +1,4 @@
-package net.milosvasic.groot
+package net.milosvasic.groot.languages.kotlin
 
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -7,9 +7,6 @@ import org.gradle.api.Project
 class GrootKotlin implements Plugin<Project> {
 
     void apply(Project project) {
-        SetupKotlinProject extension = new SetupKotlinProject(project)
-        project.extensions.add("grootKotlinProject", extension)
-
         String version = "1.1.0"
         project.apply(plugin: "java")
         project.apply(plugin: "kotlin")

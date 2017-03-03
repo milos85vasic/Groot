@@ -9,11 +9,12 @@ buildscript {
     }
 }
 
+apply plugin: "groot"
 apply plugin: "groot-kotlin"
-apply plugin: "groot-kotlin-application"
 
 String projectPackage = "groot"
 String projectGroup = "net.milosvasic.try"
 
-grootKotlinProject.setup(projectGroup, projectPackage)
-grootKotlinApplication.setup(grootKotlinProject.projectPackage)
+groot.kotlin.project.setup(projectGroup, projectPackage)
+String fullPackage = groot.kotlin.project.projectPackage
+groot.kotlin.application.setup(fullPackage)

@@ -1,4 +1,4 @@
-package net.milosvasic.groot
+package net.milosvasic.groot.languages.kotlin
 
 import org.gradle.api.Project
 
