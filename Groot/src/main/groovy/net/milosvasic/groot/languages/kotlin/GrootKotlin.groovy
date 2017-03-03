@@ -3,7 +3,6 @@ package net.milosvasic.groot.languages.kotlin
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 
-
 class GrootKotlin implements Plugin<Project> {
 
     void apply(Project project) {

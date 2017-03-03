@@ -12,6 +12,9 @@ buildscript {
 apply plugin: "groot"
 apply plugin: "groot-kotlin"
 
+groot.registerRepository("http://repo.milosvasic.net/releases")
+groot.registerRepository("http://repo.milosvasic.net/development")
+
 final alpha = 1
 final beta = 0
 final version = 1
