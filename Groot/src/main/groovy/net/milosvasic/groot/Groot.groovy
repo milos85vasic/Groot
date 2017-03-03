@@ -65,7 +65,7 @@ class Groot {
                             }
                     }
                 } catch (Exception e) {
-                    println(String.format("Error contacting [ %s ][ %s ]", repo, e))
+                    // Ignore
                 }
             }
             if (latestVersion != null && latestVersion.length() > 0) {
