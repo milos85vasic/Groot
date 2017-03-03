@@ -1,5 +1,6 @@
 package net.milosvasic.groot
 
+import groovy.util.slurpersupport.GPathResult
 import net.milosvasic.groot.languages.kotlin.Kotlin
 import org.gradle.api.Project
 
@@ -24,6 +25,66 @@ class Groot {
         project.repositories {
             maven {
                 url "$repoUrl"
+            }
+        }
+    }
+
+    void depend(String depGroup, String depName, String depVersion) {
+        if ("$depVersion".endsWith("+")) {
+            println(
+                    String.format
+                            (
+                                    "We will obtain latest version for:\n\t\t[ %s ]\n\t\t[ %s ]\n\t\t[ %s ]",
+                                    "$depGroup", "$depName", "$depVersion"
+                            )
+            )
+            String latestVersion = ""
+            for (repo in repos) {
+                println(String.format("Contacting [ %s ]", repo))
+                String rawXml
+                try {
+                    String group = depGroup.replace(".", "/")
+                    URL url = new URL("$repo/$group/$depName/maven-metadata.xml")
+                    InputStream stream = url.openStream()
+                    List<String> lines = stream.readLines()
+                    StringBuilder builder = new StringBuilder()
+                    for (line in lines) {
+                        builder.append(line)
+                    }
+                    rawXml = builder.toString()
+                    GPathResult xml = new XmlSlurper().parseText(rawXml)
+                    xml.versioning.versions.each {
+                        member ->
+                            member.children().each {
+                                tag ->
+                                    String textVersion = "$depVersion"
+                                    String query = textVersion.substring(0, textVersion.length() - 2)
+                                    if ("${tag.text()}".startsWith(query)) {
+                                        latestVersion = "${tag.text()}"
+                                    }
+                            }
+                    }
+                } catch (Exception e) {
+                    println(String.format("Error contacting [ %s ][ %s ]", repo, e))
+                }
+            }
+            if (latestVersion != null && latestVersion.length() > 0) {
+                println(String.format("Latest version obtained [ %s ][ %s ]", depVersion, latestVersion))
+                project.dependencies {
+                    compile group: depGroup, name: depName, version: latestVersion
+                    testCompile group: depGroup, name: depName, version: latestVersion
+                }
+            } else {
+                println(String.format("We couldn't obtain the latest version [ %s ]", "$depVersion"))
+                project.dependencies {
+                    compile group: depGroup, name: depName, version: depVersion
+                    testCompile group: depGroup, name: depName, version: depVersion
+                }
+            }
+        } else {
+            project.dependencies {
+                compile group: depGroup, name: depName, version: depVersion
+                testCompile group: depGroup, name: depName, version: depVersion
             }
         }
     }
