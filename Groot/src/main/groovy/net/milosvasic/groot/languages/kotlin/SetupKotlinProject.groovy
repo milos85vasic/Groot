@@ -32,7 +32,7 @@ class SetupKotlinProject {
         project.apply(plugin: "maven")
         String buildVariant
         try {
-            buildVariant = variant
+            buildVariant = project.variant
         } catch (Exception e) {
             buildVariant = "DEV"
         }
