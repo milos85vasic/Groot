@@ -34,19 +34,6 @@ class GrootKotlin implements Plugin<Project> {
         project.sourceSets.main.kotlin.srcDirs += 'src/main/kotlin'
         project.sourceSets.main.kotlin.srcDirs += 'build/generated-src/java'
         project.sourceSets.main.kotlin.srcDirs += 'build/generated-src/kotlin'
-
-
-//        project.extensions.create("kotlin", KotlinDefinition)
-
-//        project.task('hello') {
-//            doLast {
-//                println project.greeting.message
-//            }
-//        }
     }
-
-//    class KotlinDefinition {
-//        String version = "1.0.6"
-//    }
 
 }
