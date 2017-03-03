@@ -11,6 +11,7 @@ buildscript {
 
 apply plugin: "groot"
 apply plugin: "groot-kotlin"
+apply plugin: "groot-deploy"
 
 groot.registerRepository("http://repo.milosvasic.net/releases")
 groot.registerRepository("http://repo.milosvasic.net/development")
