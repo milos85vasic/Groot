@@ -10,7 +10,7 @@ class SetupKotlinProject {
     private Project project
     public String projectGroup
     public String projectPackage
-    public String projectVersion;
+    public String projectVersion
 
     SetupKotlinProject(Project project) {
         this.project = project

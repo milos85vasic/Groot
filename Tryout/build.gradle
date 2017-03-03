@@ -11,6 +11,7 @@ buildscript {
 
 apply plugin: "groot"
 apply plugin: "groot-kotlin"
+apply plugin: "groot-credentials"
 
 groot.registerRepository("http://repo.milosvasic.net/releases")
 groot.registerRepository("http://repo.milosvasic.net/development")
@@ -37,5 +38,11 @@ groot.kotlin.project.setup(
 )
 
 String fullPackage = groot.kotlin.project.projectPackage
+String fullVersion = groot.kotlin.project.projectVersion
+
 groot.kotlin.application.setup(fullPackage)
-groot.setupDeployment()
+
+groot.deployment.ftp.host = ftpServer
+groot.deployment.ftp.username = ftpUsername
+groot.deployment.ftp.password = ftpPassword
+groot.deployment.setup(fullPackage, fullVersion)
