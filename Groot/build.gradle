@@ -24,6 +24,11 @@ version = '1.0.0-Alpha-1'
 uploadArchives {
     repositories {
         mavenDeployer {
+            pom.name = project.name
+            pom.groupId = "net.milosvasic.groot"
+            pom.version = "$version"
+            pom.artifactId = project.name
+            pom.packaging = "pom"
             repository(url: uri('../repo'))
         }
     }
