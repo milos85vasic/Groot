@@ -8,6 +8,13 @@ Groot comes with the following plugins:
 - groot-kotlin
 - groot-credentials
 
+For now we have only Kotlin support, but soon we will add support for
+
+- Java (default)
+- Groovy
+- Scala
+- Android and many other cool stuff.
+
 # How to use it?
 To use Groot first you have to add it to your dependencies.
 Then, depending of your needs you setup your build gradle configuration for your current module.
