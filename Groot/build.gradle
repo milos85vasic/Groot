@@ -18,7 +18,8 @@ dependencies {
 }
 
 group = 'net.milosvasic.gradle'
-version = '1.0-SNAPSHOT'
+// version = '1.0.0-Alpha-2-SNAPSHOT'
+version = '1.0.0-Alpha-1'
 
 uploadArchives {
     repositories {
