@@ -114,7 +114,7 @@ or something like:
 ```
 ./gradlew -Pvariant=STAGING assemble
 ```
-And finally, let's say you wish to build PRODUCTION variant and release it to production Maven repository:
+And finally, let's say you wish to build RELEASE variant and release it to production Maven repository:
 ```
 ./gradlew -Pvariant=RELEASE -Pdeploy=production assemble
 ```
