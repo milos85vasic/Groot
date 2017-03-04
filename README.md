@@ -1,6 +1,6 @@
 # Groot, Gradle's best friend!
 So, what is Groot actually?
-Groot is set of plugins. It will allow you easily to setup your project for building and it's maven deployment configuration.
+Groot is set of Gradle plugins. It will allow you easily to setup your project for building and it's maven deployment configuration.
 
 # What plugins does it have?
 Groot comes with the following plugins:
