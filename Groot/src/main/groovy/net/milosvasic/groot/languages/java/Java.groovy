@@ -1,17 +1,17 @@
-package net.milosvasic.groot.languages.kotlin
+package net.milosvasic.groot.languages.java
 
 import net.milosvasic.groot.languages.Language
-import net.milosvasic.groot.setup.ApplicationSetup
 import net.milosvasic.groot.setup.ProjectSetup
+import net.milosvasic.groot.setup.ApplicationSetup
 import org.gradle.api.Project
 
-class Kotlin implements Language {
+class Java implements Language {
 
     private Project mainProject
     public ProjectSetup project
     public ApplicationSetup application
 
-    Kotlin(Project project) {
+    Java(Project project) {
         this.mainProject = project
         this.project = new ProjectSetup(project)
         this.project.language = this
@@ -21,20 +21,20 @@ class Kotlin implements Language {
 
     @Override
     String getBuildConfigClassFilename() {
-        return "BuildConfig.kt"
+        return "BuildConfig.java"
     }
 
     @Override
     String getBuildConfigClassContent(String projectPackage, String projectVersion, String projectName) {
-        return new StringBuilder("package $projectPackage")
+        return new StringBuilder("package $projectPackage;")
                 .append("\n")
                 .append("\n")
-                .append("object BuildConfig {")
+                .append("class BuildConfig {")
                 .append("\n")
                 .append("\n")
-                .append("\tval VERSION = \"$projectVersion\"")
+                .append("\tpublic static String VERSION = \"$projectVersion\";")
                 .append("\n")
-                .append("\tval NAME = \"$projectName\"")
+                .append("\tpublic static String NAME = \"$projectName\";")
                 .append("\n")
                 .append("\n")
                 .append("}")
@@ -43,7 +43,7 @@ class Kotlin implements Language {
 
     @Override
     String getMainClassName() {
-        return "MainKt"
+        return "Main"
     }
 
 }

@@ -12,7 +12,7 @@ buildscript {
 }
 
 apply plugin: "groot"
-apply plugin: "groot-kotlin"
+apply plugin: "groot-java"
 apply plugin: "groot-credentials"
 
 groot.registerRepository("http://repo.milosvasic.net/releases")
@@ -26,10 +26,10 @@ final beta = 0
 final version = 1
 final secondaryVersion = 0
 final tertiaryVersion = 0
-final projectPackage = "kotlin"
+final projectPackage = "java"
 final projectGroup = "net.milosvasic.tryout.groot"
 
-groot.kotlin.project.setup(
+groot.java.project.setup(
         alpha,
         beta,
         version,
@@ -39,10 +39,10 @@ groot.kotlin.project.setup(
         projectPackage
 )
 
-String fullPackage = groot.kotlin.project.projectPackage
-String fullVersion = groot.kotlin.project.projectVersion
+String fullPackage = groot.java.project.projectPackage
+String fullVersion = groot.java.project.projectVersion
 
-groot.kotlin.application.setup(fullPackage)
+groot.java.application.setup(fullPackage)
 
 groot.deployment.ftp.host = ftpServer
 groot.deployment.ftp.username = ftpUsername

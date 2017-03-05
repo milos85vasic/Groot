@@ -1,18 +1,20 @@
-package net.milosvasic.groot.languages.kotlin
+package net.milosvasic.groot.setup
 
+import net.milosvasic.groot.languages.Language
 import org.gradle.api.Project
 import org.gradle.api.tasks.Copy
 import org.gradle.api.tasks.bundling.Jar
 
 
-class SetupKotlinProject {
+class ProjectSetup {
 
     private Project project
+    public Language language
     public String projectGroup
     public String projectPackage
     public String projectVersion
 
-    SetupKotlinProject(Project project) {
+    ProjectSetup(Project project) {
         this.project = project
     }
 
@@ -59,27 +61,21 @@ class SetupKotlinProject {
                     .append(item)
                     .append(File.separator)
         }
+        String langName = language.class.simpleName.toLowerCase().replace(" ", "_")
         File destination = new File(
-                "${System.getProperty("user.dir")}${File.separator}${project.name}${File.separator}build${File.separator}generated-src${File.separator}kotlin${File.separator}${packageStructure.toString()}"
+                "${System.getProperty("user.dir")}${File.separator}${project.name}${File.separator}build${File.separator}generated-src${File.separator}$langName${File.separator}${packageStructure.toString()}"
         )
         println("We are about to generate sources [ ${destination.absolutePath} ]")
         if (destination.exists() || destination.mkdirs()) {
             final classFile = new File(
-                    "$destination${File.separator}BuildConfig.kt"
+                    "$destination${File.separator}${language.buildConfigClassFilename}"
             )
-            final builder = new StringBuilder("package ${this.projectPackage}")
-                    .append("\n")
-                    .append("\n")
-                    .append("object BuildConfig {")
-                    .append("\n")
-                    .append("\n")
-                    .append("\tval VERSION = \"${project.version}\"")
-                    .append("\n")
-                    .append("\tval NAME = \"${project.name}\"")
-                    .append("\n")
-                    .append("\n")
-                    .append("}")
-            classFile.write(builder.toString())
+            String content = language.getBuildConfigClassContent(
+                    this.projectPackage,
+                    project.version as String,
+                    project.name
+            )
+            classFile.write(content)
             println("We generated file [ ${classFile.absolutePath} ]")
         } else {
             println("Couldn't initialize [ ${destination.absolutePath} ]")

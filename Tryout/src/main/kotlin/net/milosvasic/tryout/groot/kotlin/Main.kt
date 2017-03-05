@@ -1,4 +1,4 @@
-package net.milosvasic.tryout.groot
+package net.milosvasic.tryout.groot.kotlin
 
 import net.milosvasic.factory.project.ProjectFactory
 import net.milosvasic.logger.ConsoleLogger

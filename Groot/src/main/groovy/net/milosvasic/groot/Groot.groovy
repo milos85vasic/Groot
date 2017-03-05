@@ -2,12 +2,14 @@ package net.milosvasic.groot
 
 import groovy.util.slurpersupport.GPathResult
 import net.milosvasic.groot.deployment.Deploy
+import net.milosvasic.groot.languages.java.Java
 import net.milosvasic.groot.languages.kotlin.Kotlin
 import org.gradle.api.Project
 
 
 class Groot {
 
+    public Java java
     public Kotlin kotlin
     private Project project
     public Deploy deployment
@@ -19,6 +21,7 @@ class Groot {
 
     Groot(Project project) {
         this.project = project
+        java  = new Java(project)
         kotlin = new Kotlin(project)
         deployment = new Deploy(project)
     }

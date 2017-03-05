@@ -1,17 +1,20 @@
-package net.milosvasic.groot.languages.kotlin
+package net.milosvasic.groot.setup
 
+import net.milosvasic.groot.languages.Language
 import org.gradle.api.Project
 
 
-class SetupKotlinApplication {
-    private Project project
+class ApplicationSetup {
 
-    SetupKotlinApplication(Project project) {
+    private Project project
+    public Language language
+
+    ApplicationSetup(Project project) {
         this.project = project
     }
 
     void setup(String versionPackage) {
-        setup(versionPackage, "MainKt")
+        setup(versionPackage, language.mainClassName)
     }
 
     void setup(String versionPackage, String mainClass) {
