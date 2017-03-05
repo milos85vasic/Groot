@@ -10,8 +10,8 @@ Groot comes with the following plugins:
 - groot-credentials
 
 We currently support the following langauges:
-    - Java
-    - Kotlin
+- Java
+- Kotlin
 
 Many other will come soon:
 - Groovy
