@@ -16,7 +16,7 @@ We currently support the following langauges:
 Many other will come soon:
 - Groovy
 - Scala
-- Android and many other cool stuff.
+- Android ...
 
 # How to use it?
 To use Groot first you have to add it to your dependencies.
