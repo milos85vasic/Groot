@@ -5,12 +5,15 @@ Groot is set of Gradle plugins. It will allow you easily to setup your project f
 # What plugins does it have?
 Groot comes with the following plugins:
 - groot
+- groot-java
 - groot-kotlin
 - groot-credentials
 
-For now we have only Kotlin support, but soon we will add support for
+We currently support the following langauges:
+    - Java
+    - Kotlin
 
-- Java (default)
+Many other will come soon:
 - Groovy
 - Scala
 - Android and many other cool stuff.
@@ -28,6 +31,23 @@ apply plugin: "groot"
 apply plugin: "groot-kotlin"
 apply plugin: "groot-credentials"
 ```
+If your target language is something else, like Java for example, use:
+```
+apply plugin: "groot-kotlin"
+```
+instead of:
+```
+apply plugin: "groot-kotlin"
+```
+NOTE: In that case instead of accessing to groot members through:
+```
+groot.kotlin ...
+```
+access them through:
+```
+groot.java ....
+```
+
 - If you have Maven repositories on which you already published some of your dependencies you can register it to Groot:
 ```
 groot.registerRepository("http://repo.milosvasic.net/releases")

@@ -1,6 +1,7 @@
 # Version 1.0.0 Alpha 2
 
-- Java support
+- Java plugin
+- Refactoring
 
 # Version 1.0.0 Alpha 1
 
