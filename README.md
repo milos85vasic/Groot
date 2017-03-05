@@ -33,7 +33,7 @@ apply plugin: "groot-credentials"
 ```
 If your target language is something else, like Java for example, use:
 ```
-apply plugin: "groot-kotlin"
+apply plugin: "groot-java"
 ```
 instead of:
 ```
