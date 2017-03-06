@@ -10,6 +10,14 @@ public class Car {
         this.fuel = fuel;
     }
 
+    public String getFuel() {
+        return fuel;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
     @Override
     public String toString() {
         return "Car{" +
