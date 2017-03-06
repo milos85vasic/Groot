@@ -21,8 +21,8 @@ groot.registerRepository("http://repo.milosvasic.net/development")
 groot.depend("net.milosvasic.logger", "Logger", "1.2.0")
 groot.depend("net.milosvasic.factory", "ProjectFactory", "1.0.0_Alpha_1_DEV_+")
 
-final alpha = 1
-final beta = 0
+final alpha = 0
+final beta = 1 // Let it be BETA :)
 final version = 1
 final secondaryVersion = 0
 final tertiaryVersion = 0
