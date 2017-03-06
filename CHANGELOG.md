@@ -1,6 +1,6 @@
 # Version 1.0.0 Alpha 3
 
-- Gradle plugin
+- Groovy plugin
 - Scala plugin
 
 # Version 1.0.0 Alpha 2
