@@ -7,16 +7,17 @@ Groot comes with the following plugins:
 - groot
 - groot-java
 - groot-kotlin
+- groot-groovy
+- groot-scala
 - groot-credentials
 
 We currently support the following langauges:
 - Java
 - Kotlin
-
-Many other will come soon:
 - Groovy
 - Scala
-- Android ...
+
+Many other JVMs will come soon, Android too!
 
 # How to use it?
 To use Groot first you have to add it to your dependencies.
