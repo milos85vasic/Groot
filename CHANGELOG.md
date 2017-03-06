@@ -1,3 +1,8 @@
+# Version 1.0.0 Alpha 3
+
+- Gradle plugin
+- Scala plugin
+
 # Version 1.0.0 Alpha 2
 
 - Java plugin
