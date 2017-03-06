@@ -33,8 +33,8 @@ class GrootKotlin implements Plugin<Project> {
         project.sourceSets.main.kotlin.srcDirs += 'src/main/kotlin'
         project.sourceSets.main.java.srcDirs += 'build/generated-src/java'
         project.sourceSets.main.kotlin.srcDirs += 'build/generated-src/kotlin'
-        project.sourceSets.test.java.srcDirs += 'test/main/java'
-        project.sourceSets.test.kotlin.srcDirs += 'test/main/kotlin'
+        project.sourceSets.test.java.srcDirs += 'src/test/java'
+        project.sourceSets.test.kotlin.srcDirs += 'src/test/kotlin'
     }
 
 }

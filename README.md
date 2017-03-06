@@ -143,3 +143,7 @@ And finally, let's say you wish to build RELEASE variant and release it to produ
 Each module we build with Groot generates BuildConfig class for language used.
 Build config class contains information about module name and version.
 In Java for example we have BuildConfig.java, in Kotlin BuildKotlin.kt, in Groovy BuildConfig.groovy and so on.
+
+# Source code notes
+Main module in Groot source code is Groot. However, there are some additional modules - Tryout modules.
+Each of them has a purpose to check if Groot is providing everything needed to build properly.

@@ -36,8 +36,8 @@ class GrootScala implements Plugin<Project> {
         project.sourceSets.main.java.srcDirs += 'build/generated-src/java'
         project.sourceSets.main.scala.srcDirs += 'src/main/scala'
         project.sourceSets.main.scala.srcDirs += 'build/generated-src/scala'
-        project.sourceSets.test.java.srcDirs += 'test/main/java'
-        project.sourceSets.test.scala.srcDirs += 'test/main/scala'
+        project.sourceSets.test.java.srcDirs += 'src/test/java'
+        project.sourceSets.test.scala.srcDirs += 'src/test/scala'
     }
 
     private String getVersionForTest() {

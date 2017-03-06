@@ -24,7 +24,7 @@ class GrootJava implements Plugin<Project> {
         }
         project.sourceSets.main.java.srcDirs += 'src/main/java'
         project.sourceSets.main.java.srcDirs += 'build/generated-src/java'
-        project.sourceSets.test.java.srcDirs += 'test/main/java'
+        project.sourceSets.test.java.srcDirs += 'src/test/java'
     }
 
 }
