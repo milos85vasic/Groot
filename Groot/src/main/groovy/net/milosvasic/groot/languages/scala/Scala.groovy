@@ -30,7 +30,7 @@ class Scala implements Language {
         return new StringBuilder("package $projectPackage")
                 .append("\n")
                 .append("\n")
-                .append("class BuildConfig {")
+                .append("object BuildConfig {")
                 .append("\n")
                 .append("\n")
                 .append("\tval VERSION = \"$projectVersion\"")

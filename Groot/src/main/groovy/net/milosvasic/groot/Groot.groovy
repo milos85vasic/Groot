@@ -5,12 +5,14 @@ import net.milosvasic.groot.deployment.Deploy
 import net.milosvasic.groot.languages.groovy.Groovy
 import net.milosvasic.groot.languages.java.Java
 import net.milosvasic.groot.languages.kotlin.Kotlin
+import net.milosvasic.groot.languages.scala.Scala
 import org.gradle.api.Project
 
 
 class Groot {
 
     public Java java
+    public Scala scala
     public Groovy groovy
     public Kotlin kotlin
     private Project project
@@ -24,6 +26,7 @@ class Groot {
     Groot(Project project) {
         this.project = project
         java  = new Java(project)
+        scala = new Scala(project)
         kotlin = new Kotlin(project)
         groovy = new Groovy(project)
         deployment = new Deploy(project)
