@@ -1,1 +1,1 @@
-include ":Groot", ":Tryout", ":Tryout_Java"
+include ":Groot", ":Tryout", ":Tryout_Java", ":Tryout_Groovy"
