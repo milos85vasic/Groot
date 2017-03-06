@@ -28,7 +28,9 @@ class GrootScala implements Plugin<Project> {
 
             compile "org.scala-lang:scala-library:$version"
             testCompile "org.scala-lang:scala-library:$version"
-            testCompile "org.scalatest:scalatest_2.11:$testVersion"
+
+            compile "org.scalatest:scalatest_${getVersionForTest()}:$testVersion"
+            testCompile "org.scalatest:scalatest_${getVersionForTest()}:$testVersion"
         }
         project.sourceSets.main.java.srcDirs += 'src/main/java'
         project.sourceSets.main.java.srcDirs += 'build/generated-src/java'
@@ -36,6 +38,14 @@ class GrootScala implements Plugin<Project> {
         project.sourceSets.main.scala.srcDirs += 'build/generated-src/scala'
         project.sourceSets.test.java.srcDirs += 'test/main/java'
         project.sourceSets.test.scala.srcDirs += 'test/main/scala'
+    }
+
+    private String getVersionForTest() {
+        if (version.count(".") >= 2) {
+            int index = version.indexOf(".")
+            return version.substring(0, index + 3)
+        }
+        return version
     }
 
 }

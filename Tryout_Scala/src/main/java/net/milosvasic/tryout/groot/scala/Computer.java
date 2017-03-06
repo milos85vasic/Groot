@@ -11,6 +11,14 @@ public class Computer {
         this.ram = ram;
     }
 
+    public int getCpus() {
+        return cpus;
+    }
+
+    public long getRam() {
+        return ram;
+    }
+
     @Override
     public String toString() {
         return "Computer{" +
