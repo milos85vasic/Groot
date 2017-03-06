@@ -32,6 +32,8 @@ class GrootGroovy implements Plugin<Project> {
         project.sourceSets.main.java.srcDirs += 'build/generated-src/java'
         project.sourceSets.main.groovy.srcDirs += 'src/main/groovy'
         project.sourceSets.main.groovy.srcDirs += 'build/generated-src/groovy'
+        project.sourceSets.test.java.srcDirs += 'test/main/java'
+        project.sourceSets.test.groovy.srcDirs += 'test/main/groovy'
     }
 
 }
