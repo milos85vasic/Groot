@@ -145,9 +145,9 @@ Each module we build with Groot generates BuildConfig class for language used.
 Build config class contains information about module name and version.
 In Java for example we have BuildConfig.java, in Kotlin BuildKotlin.kt, in Groovy BuildConfig.groovy and so on.
 
-# Source code notes
-Main module in Groot source code is Groot. However, there are some additional modules - Tryout modules.
-Each of them has a purpose to check if Groot is providing everything needed to build properly.
+# Tryouts
+You can find Groot tryout examples in [https://github.com/milos85vasic/Groot-Tryouts](https://github.com/milos85vasic/Groot-Tryouts).
+Each module has a purpose to check if Groot is providing everything needed to build properly.
 
 # Android
 TBD.
