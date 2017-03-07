@@ -4,7 +4,7 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 
 
-class GrootAndroid implements Plugin<Project> {
+class GrootAndroidApplication implements Plugin<Project> {
 
     @Override
     void apply(Project project) {
