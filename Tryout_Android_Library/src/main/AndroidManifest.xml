@@ -1,0 +1,8 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="net.milosvasic.tryout.groot.android">
+
+    <application
+            android:allowBackup="false"
+            android:label="Android Library Tryout"
+            android:supportsRtl="true" />
+
+</manifest>

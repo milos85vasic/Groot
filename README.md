@@ -148,3 +148,6 @@ In Java for example we have BuildConfig.java, in Kotlin BuildKotlin.kt, in Groov
 # Source code notes
 Main module in Groot source code is Groot. However, there are some additional modules - Tryout modules.
 Each of them has a purpose to check if Groot is providing everything needed to build properly.
+
+# Android
+TBD.

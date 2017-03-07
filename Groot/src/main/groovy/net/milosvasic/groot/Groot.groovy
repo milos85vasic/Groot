@@ -1,6 +1,7 @@
 package net.milosvasic.groot
 
 import groovy.util.slurpersupport.GPathResult
+import net.milosvasic.groot.android.Android
 import net.milosvasic.groot.deployment.Deploy
 import net.milosvasic.groot.languages.groovy.Groovy
 import net.milosvasic.groot.languages.java.Java
@@ -15,6 +16,7 @@ class Groot {
     public Scala scala
     public Groovy groovy
     public Kotlin kotlin
+    public Android android
     private Project project
     public Deploy deployment
     private List<String> repos
@@ -29,6 +31,7 @@ class Groot {
         scala = new Scala(project)
         kotlin = new Kotlin(project)
         groovy = new Groovy(project)
+        android = new Android(project)
         deployment = new Deploy(project)
     }
 

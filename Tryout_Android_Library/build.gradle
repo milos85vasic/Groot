@@ -1,0 +1,53 @@
+buildscript {
+    repositories {
+        maven {
+            url uri('../repo')
+            // url uri("http://repo.milosvasic.net/releases")
+        }
+        jcenter()
+        mavenCentral()
+    }
+    dependencies {
+        classpath group: 'net.milosvasic.groot', name: 'Groot', version: '1.0.0-Alpha-4-SNAPSHOT'
+        // classpath group: 'net.milosvasic.groot', name: 'Groot', version: '1.0.0-Alpha-3'
+        classpath "com.android.tools.build:gradle:2.3.0"
+    }
+}
+
+apply plugin: "groot"
+apply plugin: "groot-android-library"
+apply plugin: "groot-credentials"
+
+groot.registerRepository("http://repo.milosvasic.net/releases")
+groot.registerRepository("http://repo.milosvasic.net/development")
+
+groot.depend("net.milosvasic.logger", "Logger", "1.2.0")
+groot.depend("net.milosvasic.factory", "ProjectFactory", "1.0.0_Alpha_1_DEV_+")
+
+final alpha = 1
+final beta = 0
+final version = 1
+final secondaryVersion = 0
+final tertiaryVersion = 0
+final projectPackage = "android"
+final projectGroup = "net.milosvasic.tryout.groot"
+
+groot.android.project.setup(
+        alpha,
+        beta,
+        version,
+        secondaryVersion,
+        tertiaryVersion,
+        projectGroup,
+        projectPackage
+)
+
+String fullPackage = groot.android.project.projectPackage
+String fullVersion = groot.android.project.projectVersion
+
+groot.android.application.setup(fullPackage)
+
+groot.deployment.ftp.host = ftpServer
+groot.deployment.ftp.username = ftpUsername
+groot.deployment.ftp.password = ftpPassword
+groot.deployment.setup(fullPackage, fullVersion)
