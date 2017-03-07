@@ -8,8 +8,8 @@ import org.gradle.api.tasks.bundling.Jar
 
 class ProjectSetup {
 
-    private Project project
     public Language language
+    protected Project project
     public String projectGroup
     public String projectPackage
     public String projectVersion

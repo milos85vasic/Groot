@@ -45,8 +45,6 @@ groot.android.project.setup(
 String fullPackage = groot.android.project.projectPackage
 String fullVersion = groot.android.project.projectVersion
 
-groot.android.application.setup(fullPackage)
-
 groot.deployment.ftp.host = ftpServer
 groot.deployment.ftp.username = ftpUsername
 groot.deployment.ftp.password = ftpPassword
