@@ -3,7 +3,7 @@
 build/
 gradle*
 !gradle-plugins*
-repo
+Repository
 
 # Ignore Gradle GUI config
 gradle-app.setting
@@ -19,3 +19,4 @@ gradle-app.setting
 
 credentials*.gradle
 local.properties
+gen

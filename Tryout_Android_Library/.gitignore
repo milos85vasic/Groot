@@ -99,4 +99,4 @@ build/*
 !Releases/*.jar
 
 credentials*.gradle
-../local.properties
+gen

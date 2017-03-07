@@ -21,6 +21,7 @@ group = 'net.milosvasic.gradle'
 version = '1.0.0-Alpha-4-SNAPSHOT'
 // version = '1.0.0-Alpha-4'
 
+File home = new File(System.getProperty("user.home"))
 uploadArchives {
     repositories {
         mavenDeployer {
@@ -29,7 +30,7 @@ uploadArchives {
             pom.version = "$version"
             pom.artifactId = project.name
             pom.packaging = "pom"
-            repository(url: uri('../repo'))
+            repository(url: uri("${home.absolutePath}/Groot/Repository"))
         }
     }
 }

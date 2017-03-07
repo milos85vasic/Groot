@@ -1,7 +1,7 @@
 buildscript {
     repositories {
         maven {
-            url uri('../repo')
+            url uri(new File("${System.getProperty("user.home")}${File.separator}Groot${File.separator}Repository").absolutePath)
             // url uri("http://repo.milosvasic.net/releases")
         }
     }
