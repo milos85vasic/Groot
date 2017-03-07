@@ -16,9 +16,9 @@ class Android implements Language {
 
     Android(Project project) {
         this.mainProject = project
-        this.project = new ProjectSetup(project)
+        this.project = new AndroidProjectSetup(project)
         this.project.language = this
-        application = new ApplicationSetup(project)
+        application = new AndroidApplicationSetup(project)
         application.language = this
         java = new Java(project)
     }
