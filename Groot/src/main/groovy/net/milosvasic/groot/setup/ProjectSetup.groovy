@@ -52,7 +52,10 @@ class ProjectSetup {
         if (buildVariant == "DEV") {
             project.version += "_${System.currentTimeMillis()}"
         }
-        project.jar.archiveName = project.name + "_V" + project.version + ".jar"
+
+        if (project.hasProperty("jar")) {
+            project.jar.archiveName = project.name + "_V" + project.version + ".jar"
+        }
         projectVersion = project.version
 
         StringBuilder packageStructure = new StringBuilder()
@@ -81,12 +84,6 @@ class ProjectSetup {
             println("Couldn't initialize [ ${destination.absolutePath} ]")
         }
 
-        project.task([type: Jar, dependsOn: project.classes], "sourcesJar", {
-            classifier = 'sources'
-            from project.sourceSets.main.allSource
-            archiveName = project.name + "_V" + project.version + "_Sources.jar"
-        })
-
         project.task([type: Copy], "copyRelease", {
             if (buildVariant == "RELEASE") {
                 from "build${File.separator}libs"
@@ -96,8 +93,18 @@ class ProjectSetup {
             }
         })
 
-        project.assemble.finalizedBy(project.sourcesJar)
-        project.sourcesJar.finalizedBy(project.copyRelease)
+        if (project.hasProperty("classes")) {
+            project.task([type: Jar, dependsOn: project.classes], "sourcesJar", {
+                classifier = 'sources'
+                from project.sourceSets.main.allSource
+                archiveName = project.name + "_V" + project.version + "_Sources.jar"
+            })
+
+            project.assemble.finalizedBy(project.sourcesJar)
+            project.sourcesJar.finalizedBy(project.copyRelease)
+        } else {
+            project.assemble.finalizedBy(project.copyRelease)
+        }
     }
 
 }
