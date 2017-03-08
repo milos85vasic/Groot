@@ -104,7 +104,19 @@ credentials_production.gradle
 credentials_something_else.gradle
 ```
 ## Kotlin
-TBD.
+To use groot-kotlin plugin it is needed to add the following to your build script before apply:
+```
+buildscript {
+    repositories {
+        jcenter()
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:+"
+        classpath "org.jetbrains.kotlin:kotlin-reflect:+"
+    }
+}
+```
 
 ## Android
 TBD.
