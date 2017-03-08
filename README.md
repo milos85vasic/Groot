@@ -120,7 +120,19 @@ buildscript {
 NOTE: Take a look at tryout examples repo.
 
 ## Android
-TBD.
+To use Groot Android plugins it is needed to add the following to your build script before apply:
+```
+buildscript {
+    repositories {
+        jcenter()
+        mavenCentral()
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:2.3.0"
+    }
+}
+```
+NOTE: Take a look at tryout examples repo.
 
 # How to build and publish?
 Standard building with publishing will be done like this:
