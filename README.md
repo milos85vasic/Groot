@@ -103,6 +103,11 @@ credentials_development.gradle
 credentials_production.gradle
 credentials_something_else.gradle
 ```
+## Kotlin
+TBD.
+
+## Android
+TBD.
 
 # How to build and publish?
 Standard building with publishing will be done like this:
@@ -149,5 +154,3 @@ In Java for example we have BuildConfig.java, in Kotlin BuildKotlin.kt, in Groov
 You can find Groot tryout examples in [https://github.com/milos85vasic/Groot-Tryouts](https://github.com/milos85vasic/Groot-Tryouts).
 Each module has a purpose to check if Groot is providing everything needed to build properly.
 
-# Android
-TBD.
