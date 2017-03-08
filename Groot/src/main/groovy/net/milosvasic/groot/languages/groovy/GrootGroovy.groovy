@@ -8,7 +8,6 @@ class GrootGroovy implements Plugin<Project> {
 
     void apply(Project project) {
         project.ext.groovyVersion = "2.4.9"
-
         project.apply(plugin: "java")
         project.apply(plugin: "groovy")
         project.buildscript {
@@ -20,13 +19,6 @@ class GrootGroovy implements Plugin<Project> {
         project.repositories {
             jcenter()
             mavenCentral()
-        }
-        project.dependencies {
-            compile "junit:junit:4.12"
-            testCompile "junit:junit:4.12"
-
-            compile "org.codehaus.groovy:groovy-all:${project.ext.groovyVersion}"
-            testCompile "org.codehaus.groovy:groovy-all:${project.ext.groovyVersion}"
         }
         project.sourceSets.main.java.srcDirs += 'src/main/java'
         project.sourceSets.main.java.srcDirs += 'build/generated-src/java'

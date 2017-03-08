@@ -21,6 +21,8 @@ groot.registerRepository("http://repo.milosvasic.net/development")
 groot.depend("net.milosvasic.logger", "Logger", "1.2.0")
 groot.depend("net.milosvasic.factory", "ProjectFactory", "1.0.0_Alpha_1_DEV_+")
 
+// groot.groovy.version = "2.4.6"
+
 final alpha = 0
 final beta = 1 // Let it be BETA :)
 final version = 1
@@ -48,5 +50,3 @@ groot.deployment.ftp.host = ftpServer
 groot.deployment.ftp.username = ftpUsername
 groot.deployment.ftp.password = ftpPassword
 groot.deployment.setup(fullPackage, fullVersion)
-
-println("Groovy version: $groovyVersion")

@@ -9,12 +9,12 @@ import org.gradle.api.Project
 class Groovy implements Language {
 
     private Project mainProject
-    public ProjectSetup project
+    public GroovyProjectSetup project
     public ApplicationSetup application
 
     Groovy(Project project) {
         this.mainProject = project
-        this.project = new ProjectSetup(project)
+        this.project = new GroovyProjectSetup(project)
         this.project.language = this
         application = new ApplicationSetup(project)
         application.language = this
@@ -45,6 +45,14 @@ class Groovy implements Language {
     @Override
     String getMainClassName() {
         return "Main"
+    }
+
+    void setVersion(String groovyVersion){
+        mainProject.groovyVersion = groovyVersion
+    }
+
+    String getVersion() {
+        return mainProject.groovyVersion
     }
 
 }
