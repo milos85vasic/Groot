@@ -48,3 +48,5 @@ groot.deployment.ftp.host = ftpServer
 groot.deployment.ftp.username = ftpUsername
 groot.deployment.ftp.password = ftpPassword
 groot.deployment.setup(fullPackage, fullVersion)
+
+println("Groovy version: $groovyVersion")
