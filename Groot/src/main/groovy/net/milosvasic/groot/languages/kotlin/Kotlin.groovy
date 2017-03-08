@@ -8,12 +8,12 @@ import org.gradle.api.Project
 class Kotlin implements Language {
 
     private Project mainProject
-    public ProjectSetup project
+    public KotlinProjectSetup project
     public ApplicationSetup application
 
     Kotlin(Project project) {
         this.mainProject = project
-        this.project = new ProjectSetup(project)
+        this.project = new KotlinProjectSetup(project)
         this.project.language = this
         application = new ApplicationSetup(project)
         application.language = this
@@ -44,6 +44,14 @@ class Kotlin implements Language {
     @Override
     String getMainClassName() {
         return "MainKt"
+    }
+
+    void setVersion(String kotlinVersion){
+        mainProject.kotlinVersion = kotlinVersion
+    }
+
+    String getVersion() {
+        return mainProject.kotlinVersion
     }
 
 }

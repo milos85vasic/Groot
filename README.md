@@ -112,10 +112,14 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:+"
-        classpath "org.jetbrains.kotlin:kotlin-reflect:+"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.1.0"
+        classpath "org.jetbrains.kotlin:kotlin-reflect:1.1.0"
     }
 }
+```
+and if version is different than 1.1.0 to apply it:
+```
+groot.kotlin.version = "1.1.0"
 ```
 NOTE: Take a look at tryout examples repo.
 

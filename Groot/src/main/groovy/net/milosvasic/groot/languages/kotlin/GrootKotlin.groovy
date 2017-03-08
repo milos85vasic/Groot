@@ -6,6 +6,7 @@ import org.gradle.api.Project
 class GrootKotlin implements Plugin<Project> {
 
     void apply(Project project) {
+        project.ext.kotlinVersion = "1.1.0"
         project.apply(plugin: "java")
         project.apply(plugin: "kotlin")
         project.buildscript {
@@ -17,16 +18,6 @@ class GrootKotlin implements Plugin<Project> {
         project.repositories {
             jcenter()
             mavenCentral()
-        }
-        project.dependencies {
-            compile "junit:junit:4.12"
-            testCompile "junit:junit:4.12"
-
-            compile "org.jetbrains.kotlin:kotlin-stdlib:+"
-            compile "org.jetbrains.kotlin:kotlin-reflect:+"
-
-            testCompile "org.jetbrains.kotlin:kotlin-test:+"
-            testCompile "org.jetbrains.kotlin:kotlin-test-junit:+"
         }
         project.sourceSets.main.java.srcDirs += 'src/main/java'
         project.sourceSets.main.kotlin.srcDirs += 'src/main/kotlin'
