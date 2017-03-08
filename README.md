@@ -117,6 +117,7 @@ buildscript {
     }
 }
 ```
+NOTE: Take a look at tryout examples repo.
 
 ## Android
 TBD.
