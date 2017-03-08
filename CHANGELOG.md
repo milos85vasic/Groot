@@ -1,6 +1,11 @@
-# Version 1.0.0 Alpha 4
+# Version 1.0.0 Alpha 5
 
 - TBD.
+
+# Version 1.0.0 Alpha 4
+
+- Started work on Android plugins
+- Refactoring and polishing
 
 # Version 1.0.0 Alpha 3
 
