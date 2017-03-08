@@ -121,14 +121,14 @@ and to override Kotlin version do the following:
 ```
 groot.kotlin.version = "1.1.0"
 ```
-NOTE: Take a look at tryout examples repo.
+NOTE: Take a look at [tryout examples repo](https://github.com/milos85vasic/Groot-Tryouts).
 
 ## Groovy
 To override Groovy version do the following:
 ```
 groot.groovy.version = "2.4.7"
 ```
-NOTE: Take a look at tryout examples repo.
+NOTE: Take a look at [tryout examples repo](https://github.com/milos85vasic/Groot-Tryouts).
 
 ## Scala
 To override Scala versions do the following:
@@ -136,9 +136,12 @@ To override Scala versions do the following:
 groot.scala.version = "2.11.1"
 groot.scala.testVersion = "3.0.1"
 ```
+NOTE: Take a look at [tryout examples repo](https://github.com/milos85vasic/Groot-Tryouts).
 
 ## Android
-To use Groot Android plugins it is needed to add the following to your build script before apply:
+Android plugin is currently in phase of development!
+
+To use Groot Android plugins it is needed to add Android dependencies to your build script before apply:
 ```
 buildscript {
     repositories {
@@ -150,7 +153,7 @@ buildscript {
     }
 }
 ```
-NOTE: Take a look at tryout examples repo.
+NOTE: Take a look at [tryout examples repo](https://github.com/milos85vasic/Groot-Tryouts).
 
 # How to build and publish?
 Standard building with publishing will be done like this:
