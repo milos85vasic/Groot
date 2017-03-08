@@ -9,12 +9,12 @@ import org.gradle.api.Project
 class Scala implements Language {
 
     private Project mainProject
-    public ProjectSetup project
+    public ScalaProjectSetup project
     public ApplicationSetup application
 
     Scala(Project project) {
         this.mainProject = project
-        this.project = new ProjectSetup(project)
+        this.project = new ScalaProjectSetup(project)
         this.project.language = this
         application = new ApplicationSetup(project)
         application.language = this
@@ -45,6 +45,22 @@ class Scala implements Language {
     @Override
     String getMainClassName() {
         return "Main"
+    }
+
+    void setVersion(String scalaVersion){
+        mainProject.scalaVersion = scalaVersion
+    }
+
+    String getVersion() {
+        return mainProject.scalaVersion
+    }
+
+    void setTestVersion(String scalaTestVersion){
+        mainProject.scalaTestVersion = scalaTestVersion
+    }
+
+    String getTestVersion() {
+        return mainProject.scalaTestVersion
     }
 
 }
