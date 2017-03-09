@@ -24,7 +24,6 @@ class AndroidProjectSetup extends ProjectSetup {
             }
             sourceSets.main.java.srcDirs += 'src/main/java'
             sourceSets.main.java.srcDirs += 'src/common/java'
-            sourceSets.main.java.srcDirs += 'build/generated-src/java'
             sourceSets.test.java.srcDirs += 'src/test/java'
         }
     }
@@ -55,9 +54,12 @@ class AndroidProjectSetup extends ProjectSetup {
             }
             sourceSets.main.java.srcDirs += 'src/main/java'
             sourceSets.main.java.srcDirs += 'src/common/java'
-            sourceSets.main.java.srcDirs += 'build/generated-src/java'
             sourceSets.test.java.srcDirs += 'src/test/java'
         }
+    }
+
+    void setupFlavor(String flavor) {
+        project.android.productFlavors.create(flavor, {})
     }
 
 }
