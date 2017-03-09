@@ -22,9 +22,10 @@ class AndroidProjectSetup extends ProjectSetup {
                 targetSdkVersion 25
                 testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
             }
-            sourceSets.main.java.srcDirs += 'src/main/java'
-            sourceSets.main.java.srcDirs += 'src/common/java'
-            sourceSets.test.java.srcDirs += 'src/test/java'
+            sourceSets.main.java.srcDirs = [
+                    'src/main/java',
+                    'src/common/java'
+            ]
         }
     }
 
@@ -52,14 +53,20 @@ class AndroidProjectSetup extends ProjectSetup {
                 targetSdkVersion targetSdk
                 testInstrumentationRunner instrumentationTestsRunner
             }
-            sourceSets.main.java.srcDirs += 'src/main/java'
-            sourceSets.main.java.srcDirs += 'src/common/java'
-            sourceSets.test.java.srcDirs += 'src/test/java'
+            sourceSets.main.java.srcDirs = [
+                    'src/main/java',
+                    'src/common/java'
+            ]
         }
     }
 
     void setupFlavor(String flavor) {
         project.android.productFlavors.create(flavor, {})
+        project.android.sourceSets[flavor].java.srcDirs =
+                [
+                        "src/$flavor/java",
+                        "src/common/java"
+                ]
     }
 
 }
