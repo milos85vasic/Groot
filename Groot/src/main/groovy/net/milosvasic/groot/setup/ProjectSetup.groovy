@@ -92,7 +92,7 @@ class ProjectSetup {
                 from "build${File.separator}libs"
                 into "Releases"
             } else {
-                println("We will not copy release jar for this build.")
+                println("We will not copy release archive for this build.")
             }
         })
 

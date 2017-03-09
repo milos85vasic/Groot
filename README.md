@@ -163,7 +163,7 @@ or
 apply plugin: "groot-android-application"
 ```
 
-Android provides default it's Android BuildConfig class!
+Android provides it's default BuildConfig class.
 
 Defining build variants (Default build variants debug and release are already supported):
 ```
@@ -178,6 +178,9 @@ groot.android.project.setupFlavor("releasing")
 groot.android.project.setupFlavor("evil")
 groot.android.project.setupFlavor("payments")
 ```
+
+NOTE: Groot variant and deploy parameters may be used along with Android's variant feature. 
+For more information about Groot variants see next chapter: 'How to build and publish?'.
 
 # How to build and publish?
 Standard building with publishing will be done like this:

@@ -41,6 +41,7 @@ class AndroidProjectSetup extends ProjectSetup {
         project.dependencies {
             compile project.fileTree(dir: 'libs', include: '*.jar')
         }
+        setupBuildDestination()
     }
 
     void setup(
@@ -86,6 +87,7 @@ class AndroidProjectSetup extends ProjectSetup {
         project.dependencies {
             compile project.fileTree(dir: 'libs', include: '*.jar')
         }
+        setupBuildDestination()
     }
 
     void setupFlavor(String flavor) {
@@ -110,6 +112,41 @@ class AndroidProjectSetup extends ProjectSetup {
                     project.android.getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             )
         }
+    }
+
+    private void setupBuildDestination() {
+        if (project.android.hasProperty("libraryVariants")) {
+            project.android {
+                libraryVariants.all {
+                    variant ->
+                        variant.outputs.each {
+                            output ->
+                                output.outputFile = new File(
+                                        "${output.outputFile.parent}${File.separator}${getFilename("${output.outputFile.name}", "aar")}"
+                                )
+                        }
+                }
+            }
+        }
+        if (project.android.hasProperty("applicationVariants")) {
+            project.android {
+                applicationVariants.all {
+                    variant ->
+                        variant.outputs.each {
+                            output ->
+                                output.outputFile = new File(
+                                        "${output.outputFile.parent}${File.separator}${getFilename("${output.outputFile.name}", "apk")}"
+                                )
+                        }
+                }
+            }
+        }
+    }
+
+    private String getFilename(String name, String extension) {
+        String finalName = name.replace(".$extension", "")
+        finalName += "_${projectVersion}.$extension"
+        return finalName
     }
 
 }
