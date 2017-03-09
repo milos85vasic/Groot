@@ -11,13 +11,14 @@ Groot comes with the following plugins:
 - groot-scala
 - groot-credentials
 
-We currently support the following langauges:
+We currently support the following languages:
 - Java
 - Kotlin
 - Groovy
 - Scala
 
-Many other JVMs will come soon, Android too!
+and the following additional technologies:
+- Android.
 
 # How to use it?
 To use Groot first you have to add it to your dependencies.
@@ -139,8 +140,6 @@ groot.scala.testVersion = "3.0.1"
 NOTE: Take a look at [tryout examples repo](https://github.com/milos85vasic/Groot-Tryouts).
 
 ## Android
-Android plugin is currently in phase of development!
-
 To use Groot Android plugins it is needed to add Android dependencies to your build script before apply:
 ```
 buildscript {
@@ -155,7 +154,16 @@ buildscript {
 ```
 NOTE: Take a look at [tryout examples repo](https://github.com/milos85vasic/Groot-Tryouts).
 
-Android provides default Android BuildConfig class.
+Apply android plugin(s):
+```
+apply plugin: "groot-android-library"
+```
+or
+```
+apply plugin: "groot-android-application"
+```
+
+Android provides default it's Android BuildConfig class!
 
 Defining build variants (Default build variants debug and release are already supported):
 ```
@@ -163,7 +171,7 @@ groot.android.project.setupBuildVariant("qa", true) // True, False means with or
 groot.android.project.setupBuildVariant("staging")  // Without Proguard. 
 ```
 
-Define flavors:
+Defining flavors:
 ```
 groot.android.project.setupFlavor("checking") // Some random flavors
 groot.android.project.setupFlavor("releasing")
