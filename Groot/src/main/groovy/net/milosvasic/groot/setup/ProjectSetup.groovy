@@ -13,6 +13,7 @@ class ProjectSetup {
     public String projectGroup
     public String projectPackage
     public String projectVersion
+    protected boolean generateBuildConfig = true
 
     ProjectSetup(Project project) {
         this.project = project
@@ -58,30 +59,32 @@ class ProjectSetup {
         }
         projectVersion = project.version
 
-        StringBuilder packageStructure = new StringBuilder()
-        for (String item : this.projectPackage.split("\\.")) {
-            packageStructure
-                    .append(item)
-                    .append(File.separator)
-        }
-        String langName = language.class.simpleName.toLowerCase().replace(" ", "_")
-        File destination = new File(
-                "${System.getProperty("user.dir")}${File.separator}${project.name}${File.separator}build${File.separator}generated-src${File.separator}$langName${File.separator}${packageStructure.toString()}"
-        )
-        println("We are about to generate sources [ ${destination.absolutePath} ]")
-        if (destination.exists() || destination.mkdirs()) {
-            final classFile = new File(
-                    "$destination${File.separator}${language.buildConfigClassFilename}"
+        if (generateBuildConfig) {
+            StringBuilder packageStructure = new StringBuilder()
+            for (String item : this.projectPackage.split("\\.")) {
+                packageStructure
+                        .append(item)
+                        .append(File.separator)
+            }
+            String langName = language.class.simpleName.toLowerCase().replace(" ", "_")
+            File destination = new File(
+                    "${System.getProperty("user.dir")}${File.separator}${project.name}${File.separator}build${File.separator}generated-src${File.separator}$langName${File.separator}${packageStructure.toString()}"
             )
-            String content = language.getBuildConfigClassContent(
-                    this.projectPackage,
-                    project.version as String,
-                    project.name
-            )
-            classFile.write(content)
-            println("We generated file [ ${classFile.absolutePath} ]")
-        } else {
-            println("Couldn't initialize [ ${destination.absolutePath} ]")
+            println("We are about to generate sources [ ${destination.absolutePath} ]")
+            if (destination.exists() || destination.mkdirs()) {
+                final classFile = new File(
+                        "$destination${File.separator}${language.buildConfigClassFilename}"
+                )
+                String content = language.getBuildConfigClassContent(
+                        this.projectPackage,
+                        project.version as String,
+                        project.name
+                )
+                classFile.write(content)
+                println("We generated file [ ${classFile.absolutePath} ]")
+            } else {
+                println("Couldn't initialize [ ${destination.absolutePath} ]")
+            }
         }
 
         project.task([type: Copy], "copyRelease", {

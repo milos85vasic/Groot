@@ -155,6 +155,8 @@ buildscript {
 ```
 NOTE: Take a look at [tryout examples repo](https://github.com/milos85vasic/Groot-Tryouts).
 
+Android provides default Android BuildConfig class.
+
 # How to build and publish?
 Standard building with publishing will be done like this:
 ```

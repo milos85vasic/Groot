@@ -7,6 +7,7 @@ class AndroidProjectSetup extends ProjectSetup {
 
     AndroidProjectSetup(Project project) {
         super(project)
+        generateBuildConfig = false
     }
 
     @Override
