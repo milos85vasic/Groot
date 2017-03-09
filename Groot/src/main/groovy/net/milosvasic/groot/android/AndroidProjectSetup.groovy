@@ -26,6 +26,20 @@ class AndroidProjectSetup extends ProjectSetup {
                     'src/main/java',
                     'src/common/java'
             ]
+            buildTypes {
+                release {
+                    minifyEnabled false
+                    shrinkResources false
+                    proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+                }
+                debug {
+                    minifyEnabled false
+                    shrinkResources false
+                }
+            }
+        }
+        project.dependencies {
+            compile project.fileTree(dir: 'libs', include: '*.jar')
         }
     }
 
@@ -57,6 +71,20 @@ class AndroidProjectSetup extends ProjectSetup {
                     'src/main/java',
                     'src/common/java'
             ]
+            buildTypes {
+                release {
+                    minifyEnabled false
+                    shrinkResources false
+                    proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+                }
+                debug {
+                    minifyEnabled false
+                    shrinkResources false
+                }
+            }
+        }
+        project.dependencies {
+            compile project.fileTree(dir: 'libs', include: '*.jar')
         }
     }
 
