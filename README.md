@@ -157,6 +157,20 @@ NOTE: Take a look at [tryout examples repo](https://github.com/milos85vasic/Groo
 
 Android provides default Android BuildConfig class.
 
+Defining build variants (Default build variants debug and release are already supported):
+```
+groot.android.project.setupBuildVariant("qa", true) // True, False means with or without Proguard enabled.
+groot.android.project.setupBuildVariant("staging")  // Without Proguard. 
+```
+
+Define flavors:
+```
+groot.android.project.setupFlavor("checking") // Some random flavors
+groot.android.project.setupFlavor("releasing")
+groot.android.project.setupFlavor("evil")
+groot.android.project.setupFlavor("payments")
+```
+
 # How to build and publish?
 Standard building with publishing will be done like this:
 ```
