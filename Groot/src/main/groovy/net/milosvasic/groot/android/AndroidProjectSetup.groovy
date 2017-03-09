@@ -97,4 +97,19 @@ class AndroidProjectSetup extends ProjectSetup {
                 ]
     }
 
+    void setupBuildVariant(String variant) {
+        setupBuildVariant(variant, false)
+    }
+
+    void setupBuildVariant(String variant, boolean proguard) {
+        def bVariant = project.android.buildTypes.create(variant)
+        bVariant.minifyEnabled(false)
+        bVariant.shrinkResources(false)
+        if (proguard) {
+            bVariant.proguardFiles(
+                    project.android.getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            )
+        }
+    }
+
 }
