@@ -52,8 +52,6 @@ class Deploy {
                             project.artifacts {
                                 archives(artifactFile) {
                                     name variantName
-                                    type filetype
-                                    classifier "${variantName}.$filetype"
                                 }
                             }
                             project.uploadArchives {
