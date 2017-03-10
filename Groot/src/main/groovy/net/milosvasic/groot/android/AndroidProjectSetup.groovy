@@ -121,9 +121,14 @@ class AndroidProjectSetup extends ProjectSetup {
                     variant ->
                         variant.outputs.each {
                             output ->
-                                output.outputFile = new File(
-                                        "${output.outputFile.parent}${File.separator}${getFilename("${output.outputFile.name}", "aar")}"
-                                )
+                                String fileName = new StringBuilder()
+                                        .append(output.outputFile.parent)
+                                        .append(File.separator)
+                                        .append(variant.name)
+                                        .append(File.separator)
+                                        .append(getFilename("aar"))
+                                        .toString()
+                                output.outputFile = new File(fileName)
                         }
                 }
             }
@@ -134,19 +139,22 @@ class AndroidProjectSetup extends ProjectSetup {
                     variant ->
                         variant.outputs.each {
                             output ->
-                                output.outputFile = new File(
-                                        "${output.outputFile.parent}${File.separator}${getFilename("${output.outputFile.name}", "apk")}"
-                                )
+                                String fileName = new StringBuilder()
+                                        .append(output.outputFile.parent)
+                                        .append(File.separator)
+                                        .append(variant.name)
+                                        .append(File.separator)
+                                        .append(getFilename("apk"))
+                                        .toString()
+                                output.outputFile = new File(fileName)
                         }
                 }
             }
         }
     }
 
-    private String getFilename(String name, String extension) {
-        String finalName = name.replace(".$extension", "")
-        finalName += "_${projectVersion}.$extension"
-        return finalName
+    private String getFilename(String extension) {
+        return "${project.name}_${projectVersion}.$extension"
     }
 
 }
