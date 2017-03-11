@@ -93,7 +93,7 @@ class Deploy {
                         pom.groupId = projectPackage
                         pom.version = projectVersion
                         pom.artifactId = project.name
-                        pom.packaging = "pom"
+                        pom.packaging = "jar"
                     }
                 }
             }
