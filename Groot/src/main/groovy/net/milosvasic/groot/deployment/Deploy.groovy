@@ -122,7 +122,6 @@ class Deploy {
                             }
                         }
                 }
-
             }
         } else {
             project.uploadArchives {

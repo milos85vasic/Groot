@@ -1,6 +1,7 @@
 # Version 1.0.0 Alpha 5
 
 - Added Android plugins
+- Refactoring
 
 # Version 1.0.0 Alpha 4
 
