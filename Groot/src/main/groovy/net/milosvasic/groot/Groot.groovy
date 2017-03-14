@@ -27,7 +27,7 @@ class Groot {
 
     Groot(Project project) {
         this.project = project
-        java  = new Java(project)
+        java = new Java(project)
         scala = new Scala(project)
         kotlin = new Kotlin(project)
         groovy = new Groovy(project)
@@ -45,6 +45,10 @@ class Groot {
     }
 
     void depend(String depGroup, String depName, String depVersion) {
+        String archiveExtension = ""
+        if (project.hasProperty("android")) {
+            archiveExtension = "@aar"
+        }
         if ("$depVersion".endsWith("+")) {
             println(
                     String.format
@@ -84,22 +88,31 @@ class Groot {
                 }
             }
             if (latestVersion != null && latestVersion.length() > 0) {
-                println(String.format("Latest version obtained [ %s ][ %s ]", depVersion, latestVersion))
+                println(String.format("[ RESOLUTION ] Latest version obtained [ %s ][ %s ]", depVersion, latestVersion))
                 project.dependencies {
-                    compile group: depGroup, name: depName, version: latestVersion
-                    testCompile group: depGroup, name: depName, version: latestVersion
+                    compile "$depGroup:$depName:$latestVersion$archiveExtension"
+                    testCompile "$depGroup:$depName:$latestVersion$archiveExtension"
+
+                    compile "$depGroup:$depName:$latestVersion:sources"
+                    testCompile "$depGroup:$depName:$latestVersion:sources"
                 }
             } else {
-                println(String.format("We couldn't obtain the latest version [ %s ]", "$depVersion"))
+                println(String.format("[ RESOLUTION ] We couldn't obtain the latest version [ %s ]", "$depVersion"))
                 project.dependencies {
-                    compile group: depGroup, name: depName, version: depVersion
-                    testCompile group: depGroup, name: depName, version: depVersion
+                    compile "$depGroup:$depName:$depVersion$archiveExtension"
+                    testCompile "$depGroup:$depName:$depVersion$archiveExtension"
+
+                    compile "$depGroup:$depName:$depVersion:sources"
+                    testCompile "$depGroup:$depName:$depVersion:sources"
                 }
             }
         } else {
             project.dependencies {
-                compile group: depGroup, name: depName, version: depVersion
-                testCompile group: depGroup, name: depName, version: depVersion
+                compile "$depGroup:$depName:$depVersion$archiveExtension"
+                testCompile "$depGroup:$depName:$depVersion$archiveExtension"
+
+                compile "$depGroup:$depName:$depVersion:sources"
+                testCompile "$depGroup:$depName:$depVersion:sources"
             }
         }
     }

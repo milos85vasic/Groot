@@ -2,6 +2,7 @@ package net.milosvasic.groot.setup
 
 import net.milosvasic.groot.languages.Language
 import org.gradle.api.Project
+import org.gradle.api.Task
 import org.gradle.api.tasks.Copy
 import org.gradle.api.tasks.bundling.Jar
 
@@ -96,18 +97,7 @@ class ProjectSetup {
             }
         })
 
-        if (project.hasProperty("classes")) {
-            project.task([type: Jar, dependsOn: project.classes], "sourcesJar", {
-                classifier = 'sources'
-                from project.sourceSets.main.allSource
-                archiveName = project.name + "_V" + project.version + "_Sources.jar"
-            })
-
-            project.assemble.finalizedBy(project.sourcesJar)
-            project.sourcesJar.finalizedBy(project.copyRelease)
-        } else {
-            project.assemble.finalizedBy(project.copyRelease)
-        }
+        project.assemble.finalizedBy(project.copyRelease)
     }
 
 }

@@ -1,6 +1,8 @@
 package net.milosvasic.groot.deployment
 
 import org.gradle.api.Project
+import org.gradle.api.Task
+import org.gradle.api.tasks.bundling.Jar
 
 class Deploy {
 
@@ -77,6 +79,7 @@ class Deploy {
                                         }
                                     }
                                 }
+                                setupAndroidJarSourcesArtifact(variantName, projectPackage, projectVersion)
                         }
                 }
             } else {
@@ -121,6 +124,7 @@ class Deploy {
                                 }
                             }
                         }
+                        setupAndroidJarSourcesArtifact(variantName, projectPackage, projectVersion)
                 }
             }
         } else {
@@ -142,8 +146,84 @@ class Deploy {
                     }
                 }
             }
+            setupJarSourcesArtifact(projectPackage, projectVersion)
         }
         project.assemble.finalizedBy(project.uploadArchives)
+    }
+
+    private void setupJarSourcesArtifact(String projectPackage, String projectVersion) {
+        if (project.hasProperty("classes")) {
+            String jarSourcesName = "sourcesJar"
+            Task sourcesTask = project.task([type: Jar, dependsOn: project.classes], jarSourcesName, {
+                classifier = 'sources'
+                from project.sourceSets.main.allSource
+                archiveName = project.name + "_V" + project.version + "_Sources.jar"
+            })
+            project.artifacts {
+                archives(sourcesTask) {
+                    name jarSourcesName
+                }
+            }
+            project.uploadArchives {
+                repositories {
+                    mavenDeployer {
+                        repository(url: "ftp://${ftp.host}") {
+                            authentication(
+                                    userName: ftp.username,
+                                    password: ftp.password
+                            )
+                        }
+                        configuration = project.configurations.deployerJars
+                        addFilter(jarSourcesName) {
+                            artifact, file ->
+                                artifact.name == jarSourcesName
+                        }
+                        pom(jarSourcesName).name = project.name
+                        pom(jarSourcesName).groupId = projectPackage
+                        pom(jarSourcesName).version = projectVersion
+                        pom(jarSourcesName).artifactId = project.name
+                        pom(jarSourcesName).packaging = "jar"
+                    }
+                }
+            }
+        }
+    }
+
+    private void setupAndroidJarSourcesArtifact(String variantName, String projectPackage, String projectVersion) {
+        if (project.android.hasProperty("libraryVariants")) {
+            String jarSourcesName = "${variantName}JarSources"
+            Task sourcesTask = project.task([type: Jar], jarSourcesName, {
+                from project.android.sourceSets.main.java.srcDirs
+                classifier = 'sources'
+            })
+            project.artifacts {
+                archives(sourcesTask) {
+                    name jarSourcesName
+                }
+            }
+            project.uploadArchives {
+                repositories {
+                    mavenDeployer {
+                        repository(url: "ftp://${ftp.host}") {
+                            authentication(
+                                    userName: ftp.username,
+                                    password: ftp.password
+                            )
+                        }
+                        configuration = project.configurations.deployerJars
+                        addFilter(jarSourcesName) {
+                            artifact, file ->
+                                artifact.name == jarSourcesName
+                        }
+                        pom(jarSourcesName).name = project.name
+                        pom(jarSourcesName).groupId = projectPackage
+                        pom(jarSourcesName).version = "${variantName}_$projectVersion"
+                        pom(jarSourcesName).artifactId = project.name
+                        pom(jarSourcesName).packaging = "jar"
+                    }
+                }
+            }
+        }
     }
 
 }
