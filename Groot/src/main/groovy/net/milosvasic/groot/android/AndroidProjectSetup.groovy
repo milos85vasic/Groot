@@ -114,11 +114,14 @@ class AndroidProjectSetup extends ProjectSetup {
         }
     }
 
-    void setupSigning(String flavor, File jks) {
+    void setupSigning(String flavor, File jks, Map jksParams) {
         println("[ SIGNING ][ $flavor ][ ${jks.absolutePath} ]")
-        project.android {
-            
-        }
+        project.android.signingConfigs.create("${flavor}SigningConfig", {
+            storeFile jks
+            storePassword jksParams["storePassword"]
+            keyAlias jksParams["keyAlias"]
+            keyPassword jksParams["keyPassword"]
+        })
     }
 
     private void setupBuildDestination() {
