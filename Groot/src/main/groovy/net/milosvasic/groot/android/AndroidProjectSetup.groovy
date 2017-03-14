@@ -114,6 +114,13 @@ class AndroidProjectSetup extends ProjectSetup {
         }
     }
 
+    void setupSigning(String flavor, File jks) {
+        println("[ SIGNING ][ $flavor ][ ${jks.absolutePath} ]")
+        project.android {
+            
+        }
+    }
+
     private void setupBuildDestination() {
         if (project.android.hasProperty("libraryVariants")) {
             project.android {
