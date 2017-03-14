@@ -182,6 +182,18 @@ groot.android.project.setupFlavor("payments")
 NOTE: Groot variant and deploy parameters may be used along with Android's variant feature. 
 For more information about Groot variants see next chapter: 'How to build and publish?'.
 
+Sign release build variant for each flavor:
+```
+groot.android.project.sign(
+        [
+                jksFile      : "Signing/Signing.jks",
+                storePassword: "Test123",
+                keyAlias     : "testKey",
+                keyPassword  : "Test123"
+        ]
+)
+```
+
 # How to build and publish?
 Standard building with publishing will be done like this:
 ```
