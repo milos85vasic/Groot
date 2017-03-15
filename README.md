@@ -194,6 +194,15 @@ groot.android.project.sign(
 )
 ```
 
+Proguard:
+
+To use proguard you have to define proguard-rules.pro in your module's directory. This configuration will be applied to:
+- release build variant
+- to all build variants defined like this one:
+```
+groot.android.project.setupBuildVariant("something", true)
+```
+
 # How to build and publish?
 Standard building with publishing will be done like this:
 ```

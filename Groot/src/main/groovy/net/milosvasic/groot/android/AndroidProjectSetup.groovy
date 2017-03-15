@@ -28,7 +28,7 @@ class AndroidProjectSetup extends ProjectSetup {
             ]
             buildTypes {
                 release {
-                    minifyEnabled false
+                    minifyEnabled true
                     shrinkResources false
                     proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
                 }
@@ -74,7 +74,7 @@ class AndroidProjectSetup extends ProjectSetup {
             ]
             buildTypes {
                 release {
-                    minifyEnabled false
+                    minifyEnabled true
                     shrinkResources false
                     proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
                 }
@@ -105,12 +105,14 @@ class AndroidProjectSetup extends ProjectSetup {
 
     void setupBuildVariant(String variant, boolean proguard) {
         def bVariant = project.android.buildTypes.create(variant)
-        bVariant.minifyEnabled(false)
         bVariant.shrinkResources(false)
         if (proguard) {
+            bVariant.minifyEnabled(true)
             bVariant.proguardFiles(
                     project.android.getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             )
+        } else {
+            bVariant.minifyEnabled(false)
         }
     }
 
