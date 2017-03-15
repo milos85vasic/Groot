@@ -203,6 +203,8 @@ To use proguard you have to define proguard-rules.pro in your module's directory
 groot.android.project.setupBuildVariant("something", true)
 ```
 
+NOTE: proguard-rules.pro file is mandatory!
+
 # How to build and publish?
 Standard building with publishing will be done like this:
 ```
