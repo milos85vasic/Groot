@@ -10,14 +10,14 @@ Groot comes with the following plugins:
 - groot-groovy
 - groot-scala
 - groot-credentials
+- groot-android-library
+- groot-android-application
 
-We currently support the following languages:
+We currently support the following:
 - Java
 - Kotlin
 - Groovy
 - Scala
-
-and the following additional technologies:
 - Android.
 
 # How to use it?
