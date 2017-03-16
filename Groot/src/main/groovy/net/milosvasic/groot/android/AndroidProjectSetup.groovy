@@ -12,6 +12,10 @@ class AndroidProjectSetup extends ProjectSetup {
 
     @Override
     void setup(int alpha, int beta, int version, int secondaryVersion, int tertiaryVersion, String projectGroup, String projectPackage) {
+        setup(alpha, beta, version, secondaryVersion, tertiaryVersion, projectGroup, projectPackage, false)
+    }
+
+    void setup(int alpha, int beta, int version, int secondaryVersion, int tertiaryVersion, String projectGroup, String projectPackage, boolean proguard) {
         super.setup(alpha, beta, version, secondaryVersion, tertiaryVersion, projectGroup, projectPackage)
         project.android {
             publishNonDefault true
@@ -28,9 +32,11 @@ class AndroidProjectSetup extends ProjectSetup {
             ]
             buildTypes {
                 release {
-                    minifyEnabled true
+                    minifyEnabled proguard
                     shrinkResources false
-                    proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+                    if (proguard) {
+                        proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+                    }
                 }
                 debug {
                     minifyEnabled false
@@ -56,7 +62,8 @@ class AndroidProjectSetup extends ProjectSetup {
             int secondaryVersion,
             int tertiaryVersion,
             String projectGroup,
-            String projectPackage
+            String projectPackage,
+            boolean proguard
     ) {
         super.setup(alpha, beta, version, secondaryVersion, tertiaryVersion, projectGroup, projectPackage)
         project.android {
@@ -74,9 +81,11 @@ class AndroidProjectSetup extends ProjectSetup {
             ]
             buildTypes {
                 release {
-                    minifyEnabled true
+                    minifyEnabled proguard
                     shrinkResources false
-                    proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+                    if (proguard) {
+                        proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+                    }
                 }
                 debug {
                     minifyEnabled false
