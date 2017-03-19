@@ -15,6 +15,7 @@ class ProjectSetup {
     public String projectPackage
     public String projectVersion
     public String projectBuildVariant
+    public boolean isProjectSetup = false
     protected boolean generateBuildConfig = true
 
     ProjectSetup(Project project) {
@@ -101,6 +102,7 @@ class ProjectSetup {
         })
 
         project.assemble.finalizedBy(project.copyRelease)
+        isProjectSetup = true
     }
 
 }

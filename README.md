@@ -255,8 +255,9 @@ And finally, let's say you wish to build RELEASE variant and release it to produ
 
 # Build config class
 Each module we build with Groot generates BuildConfig class for language used.
-Build config class contains information about module name and version.
+Build config class contains information about module name, version, groot build variant.
 In Java for example we have BuildConfig.java, in Kotlin BuildKotlin.kt, in Groovy BuildConfig.groovy and so on.
+Android provides it's version of BuildConfig with addition of groot build variant.
 
 # Tryouts
 You can find Groot tryout examples in [https://github.com/milos85vasic/Groot-Tryouts](https://github.com/milos85vasic/Groot-Tryouts).

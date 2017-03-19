@@ -102,6 +102,9 @@ class AndroidProjectSetup extends ProjectSetup {
     }
 
     void setupFlavor(String flavor) {
+        if(!isProjectSetup){
+            throw new IllegalStateException("groot.android.project.setup( ... ) method not called. Must setup project before set flavors.")
+        }
         project.android.productFlavors {
             "${flavor}" {
                 buildConfigField 'String', 'VARIANT', "\"$projectBuildVariant\""
@@ -120,6 +123,9 @@ class AndroidProjectSetup extends ProjectSetup {
     }
 
     void setupBuildVariant(String variant, boolean proguard) {
+        if(!isProjectSetup){
+            throw new IllegalStateException("groot.android.project.setup( ... ) method not called. Must setup project before set flavors.")
+        }
         def bVariant = project.android.buildTypes.create(variant)
         bVariant.shrinkResources(false)
         if (proguard) {
