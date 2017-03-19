@@ -48,6 +48,7 @@ class AndroidProjectSetup extends ProjectSetup {
             compile project.fileTree(dir: 'libs', include: '*.jar')
         }
         setupBuildDestination()
+        setupModuleRequire()
     }
 
     void setup(
@@ -97,15 +98,21 @@ class AndroidProjectSetup extends ProjectSetup {
             compile project.fileTree(dir: 'libs', include: '*.jar')
         }
         setupBuildDestination()
+        setupModuleRequire()
     }
 
     void setupFlavor(String flavor) {
-        project.android.productFlavors.create(flavor, {})
-        project.android.sourceSets[flavor].java.srcDirs =
-                [
-                        "src/$flavor/java",
-                        "src/common/java"
-                ]
+        project.android.productFlavors {
+            "${flavor}" {
+                buildConfigField 'String', 'VARIANT', "\"$projectBuildVariant\""
+            }
+        }
+        project.android.sourceSets."$flavor".java {
+            srcDirs = [
+                    "src/${flavor}/java",
+                    "src/common/java"
+            ]
+        }
     }
 
     void setupBuildVariant(String variant) {
@@ -177,6 +184,18 @@ class AndroidProjectSetup extends ProjectSetup {
 
     private String getFilename(String extension) {
         return "${project.name}_${projectVersion}.$extension"
+    }
+
+    private void setupModuleRequire() {
+        project.dependencies {
+            ext.requireModule = {
+                module ->
+                    releasingDebugCompile project.dependencies.project(path: module, configuration: 'releasingDebug')
+                    releasingReleaseCompile project.dependencies.project(path: module, configuration: 'releasingRelease')
+                    checkingDebugCompile project.dependencies.project(path: module, configuration: 'checkingDebug')
+                    checkingReleaseCompile project.dependencies.project(path: module, configuration: 'checkingRelease')
+            }
+        }
     }
 
 }

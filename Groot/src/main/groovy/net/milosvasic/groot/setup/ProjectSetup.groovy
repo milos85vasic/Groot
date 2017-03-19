@@ -14,6 +14,7 @@ class ProjectSetup {
     public String projectGroup
     public String projectPackage
     public String projectVersion
+    public String projectBuildVariant
     protected boolean generateBuildConfig = true
 
     ProjectSetup(Project project) {
@@ -41,6 +42,7 @@ class ProjectSetup {
         } catch (Exception e) {
             buildVariant = "DEV"
         }
+        projectBuildVariant = buildVariant
 
         project.version = String.format("%d.%d.%d", version, secondaryVersion, tertiaryVersion)
         if (alpha > 0) {
@@ -79,7 +81,8 @@ class ProjectSetup {
                 String content = language.getBuildConfigClassContent(
                         this.projectPackage,
                         project.version as String,
-                        project.name
+                        project.name,
+                        buildVariant
                 )
                 classFile.write(content)
                 println("We generated file [ ${classFile.absolutePath} ]")

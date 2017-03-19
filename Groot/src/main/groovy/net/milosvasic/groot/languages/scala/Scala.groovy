@@ -26,7 +26,7 @@ class Scala implements Language {
     }
 
     @Override
-    String getBuildConfigClassContent(String projectPackage, String projectVersion, String projectName) {
+    String getBuildConfigClassContent(String projectPackage, String projectVersion, String projectName, String buildVariant) {
         return new StringBuilder("package $projectPackage")
                 .append("\n")
                 .append("\n")
@@ -36,6 +36,8 @@ class Scala implements Language {
                 .append("\tval VERSION = \"$projectVersion\"")
                 .append("\n")
                 .append("\tval NAME = \"$projectName\"")
+                .append("\n")
+                .append("\tval VARIANT = \"$buildVariant\"")
                 .append("\n")
                 .append("\n")
                 .append("}")

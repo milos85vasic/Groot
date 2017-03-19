@@ -25,7 +25,7 @@ class Android implements Language {
     }
 
     @Override
-    String getBuildConfigClassContent(String projectPackage, String projectVersion, String projectName) {
+    String getBuildConfigClassContent(String projectPackage, String projectVersion, String projectName, String buildVariant) {
         return java.buildConfigClassFilename
     }
 

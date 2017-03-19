@@ -5,7 +5,7 @@ interface Language {
 
     String getBuildConfigClassFilename()
 
-    String getBuildConfigClassContent(String projectPackage, String projectVersion, String projectName)
+    String getBuildConfigClassContent(String projectPackage, String projectVersion, String projectName, String buildVariant)
 
     String getMainClassName()
 

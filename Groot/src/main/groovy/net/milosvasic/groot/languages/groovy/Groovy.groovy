@@ -26,7 +26,7 @@ class Groovy implements Language {
     }
 
     @Override
-    String getBuildConfigClassContent(String projectPackage, String projectVersion, String projectName) {
+    String getBuildConfigClassContent(String projectPackage, String projectVersion, String projectName, String buildVariant) {
         return new StringBuilder("package $projectPackage")
                 .append("\n")
                 .append("\n")
@@ -36,6 +36,8 @@ class Groovy implements Language {
                 .append("\tpublic static String VERSION = \"$projectVersion\"")
                 .append("\n")
                 .append("\tpublic static String NAME = \"$projectName\"")
+                .append("\n")
+                .append("\tpublic static String VARIANT = \"$buildVariant\"")
                 .append("\n")
                 .append("\n")
                 .append("}")
