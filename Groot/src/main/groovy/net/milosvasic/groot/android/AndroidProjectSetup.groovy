@@ -2,6 +2,7 @@ package net.milosvasic.groot.android
 
 import net.milosvasic.groot.setup.ProjectSetup
 import org.gradle.api.Project
+import org.gradle.api.tasks.Copy
 
 class AndroidProjectSetup extends ProjectSetup {
 
@@ -49,6 +50,7 @@ class AndroidProjectSetup extends ProjectSetup {
         }
         setupBuildDestination()
         setupModuleRequire()
+        setupReleaseCopy()
     }
 
     void setup(
@@ -99,6 +101,7 @@ class AndroidProjectSetup extends ProjectSetup {
         }
         setupBuildDestination()
         setupModuleRequire()
+        setupReleaseCopy()
     }
 
     void setupFlavor(String flavor) {
@@ -116,6 +119,7 @@ class AndroidProjectSetup extends ProjectSetup {
                     "src/common/java"
             ]
         }
+        setupReleaseCopy(flavor)
     }
 
     void setupBuildVariant(String variant) {
@@ -218,9 +222,31 @@ class AndroidProjectSetup extends ProjectSetup {
                                 }
                         }
                     }
-
             }
         }
+    }
+
+    private void setupReleaseCopy(String flavor) {
+        String variantName = "${flavor}Release"
+        String taskName = "copyAndroidRelease_$variantName"
+        project.task([type: Copy], taskName, {
+            if (projectBuildVariant == "RELEASE") {
+                from "build${File.separator}outputs${File.separator}aar${File.separator}${variantName}"
+                into "Releases"
+            }
+        })
+        project.copyRelease.finalizedBy(taskName)
+    }
+
+    private void setupReleaseCopy() {
+        String taskName = "copyAndroidRelease"
+        project.task([type: Copy], taskName, {
+            if (projectBuildVariant == "RELEASE") {
+                from "build${File.separator}outputs${File.separator}aar${File.separator}release"
+                into "Releases"
+            }
+        })
+        project.copyRelease.finalizedBy(taskName)
     }
 
 }
