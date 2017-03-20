@@ -102,7 +102,7 @@ class AndroidProjectSetup extends ProjectSetup {
     }
 
     void setupFlavor(String flavor) {
-        if(!isProjectSetup){
+        if (!isProjectSetup) {
             throw new IllegalStateException("groot.android.project.setup( ... ) method not called. Must setup project before set flavors.")
         }
         project.android.productFlavors {
@@ -123,7 +123,7 @@ class AndroidProjectSetup extends ProjectSetup {
     }
 
     void setupBuildVariant(String variant, boolean proguard) {
-        if(!isProjectSetup){
+        if (!isProjectSetup) {
             throw new IllegalStateException("groot.android.project.setup( ... ) method not called. Must setup project before set flavors.")
         }
         def bVariant = project.android.buildTypes.create(variant)
@@ -196,10 +196,29 @@ class AndroidProjectSetup extends ProjectSetup {
         project.dependencies {
             ext.requireModule = {
                 module ->
-                    releasingDebugCompile project.dependencies.project(path: module, configuration: 'releasingDebug')
-                    releasingReleaseCompile project.dependencies.project(path: module, configuration: 'releasingRelease')
-                    checkingDebugCompile project.dependencies.project(path: module, configuration: 'checkingDebug')
-                    checkingReleaseCompile project.dependencies.project(path: module, configuration: 'checkingRelease')
+                    if (project.android.productFlavors.size() > 0) {
+                        project.android.productFlavors.each {
+                            flavor ->
+                                project.android.buildTypes.each {
+                                    buildType ->
+                                        String capitalized = "${buildType.name}".substring(0, 1).toUpperCase()
+                                        capitalized += "${buildType.name}".substring(1, "${buildType.name}".length())
+                                        String variantName = "${flavor.name}$capitalized"
+                                        project.dependencies {
+                                            compile project.dependencies.project(path: module, configuration: "$variantName")
+                                        }
+                                }
+                        }
+                    } else {
+                        project.android.buildTypes.each {
+                            buildType ->
+                                String variantName = "${buildType.name}"
+                                project.dependencies {
+                                    compile project.dependencies.project(path: module, configuration: "$variantName")
+                                }
+                        }
+                    }
+
             }
         }
     }
