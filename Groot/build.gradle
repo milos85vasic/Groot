@@ -11,13 +11,9 @@ apply plugin: "maven"
 repositories {
     jcenter()
     mavenCentral()
-    maven {
-        url uri("http://repo.milosvasic.net/releases")
-    }
 }
 
 dependencies {
-    //    compile('net.milosvasic.logger:Logger:1.2.1')
     testCompile 'junit:junit:4.12'
 }
 
