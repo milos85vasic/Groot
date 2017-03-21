@@ -227,11 +227,12 @@ class AndroidProjectSetup extends ProjectSetup {
     }
 
     private void setupReleaseCopy(String flavor) {
+        String archiveType = getArchiveType()
         String variantName = "${flavor}Release"
         String taskName = "copyAndroidRelease_$variantName"
         project.task([type: Copy], taskName, {
             if (projectBuildVariant == "RELEASE") {
-                from "build${File.separator}outputs${File.separator}aar${File.separator}${variantName}"
+                from "build${File.separator}outputs${File.separator}$archiveType${File.separator}${variantName}"
                 into "Releases"
             }
         })
@@ -239,14 +240,23 @@ class AndroidProjectSetup extends ProjectSetup {
     }
 
     private void setupReleaseCopy() {
+        String archiveType = getArchiveType()
         String taskName = "copyAndroidRelease"
         project.task([type: Copy], taskName, {
             if (projectBuildVariant == "RELEASE") {
-                from "build${File.separator}outputs${File.separator}aar${File.separator}release"
+                from "build${File.separator}outputs${File.separator}$archiveType${File.separator}release"
                 into "Releases"
             }
         })
         project.copyRelease.finalizedBy(taskName)
+    }
+
+    private String getArchiveType() {
+        String archiveType = "aar"
+        if (project.android.hasProperty("applicationVariants")) {
+            archiveType = "apk"
+        }
+        archiveType
     }
 
 }
