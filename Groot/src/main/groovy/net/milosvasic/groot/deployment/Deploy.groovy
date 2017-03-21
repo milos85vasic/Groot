@@ -128,21 +128,30 @@ class Deploy {
                 }
             }
         } else {
+            String archiveName = project.name + "_V" + project.version
+            File artifactFile = new File("${project.buildDir}${File.separator}libs", "${archiveName}.jar")
+            project.artifacts {
+                archives file: artifactFile, name: archiveName, type: 'jar'
+            }
             project.uploadArchives {
                 repositories {
                     mavenDeployer {
-                        configuration = project.configurations.deployerJars
                         repository(url: "ftp://${ftp.host}") {
                             authentication(
                                     userName: ftp.username,
                                     password: ftp.password
                             )
                         }
-                        pom.name = project.name
-                        pom.groupId = projectPackage
-                        pom.version = projectVersion
-                        pom.artifactId = project.name
-                        pom.packaging = "jar"
+                        configuration = project.configurations.deployerJars
+                        addFilter(archiveName) {
+                            artifact, file ->
+                                artifact.name == archiveName
+                        }
+                        pom(archiveName).name = project.name
+                        pom(archiveName).groupId = projectPackage
+                        pom(archiveName).version = projectVersion
+                        pom(archiveName).artifactId = project.name
+                        pom(archiveName).packaging = "jar"
                     }
                 }
             }

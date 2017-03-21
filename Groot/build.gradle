@@ -11,15 +11,19 @@ apply plugin: "maven"
 repositories {
     jcenter()
     mavenCentral()
+    maven {
+        url uri("http://repo.milosvasic.net/releases")
+    }
 }
 
 dependencies {
+    //    compile('net.milosvasic.logger:Logger:1.2.1')
     testCompile 'junit:junit:4.12'
 }
 
 group = 'net.milosvasic.gradle'
-version = '1.0.0'
-// version = '1.0.0-Beta-1'
+// version = '1.0.0'
+version = '1.0.0-Beta-2'
 // version = '1.0.0-Alpha-5'
 
 File home = new File(System.getProperty("user.home"))
