@@ -1,3 +1,7 @@
+# Version 1.0.0 Beta 1 and Beta 2
+
+- Fixing and polishing
+
 # Version 1.0.0 Alpha 5
 
 - Added Android plugins
