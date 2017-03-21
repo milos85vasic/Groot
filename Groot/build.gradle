@@ -18,7 +18,8 @@ dependencies {
 }
 
 group = 'net.milosvasic.gradle'
-version = '1.0.0-Alpha-5-SNAPSHOT'
+version = '1.0.0'
+// version = '1.0.0-Beta-1'
 // version = '1.0.0-Alpha-5'
 
 File home = new File(System.getProperty("user.home"))
