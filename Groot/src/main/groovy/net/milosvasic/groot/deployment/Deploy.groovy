@@ -163,16 +163,6 @@ class Deploy {
     private void setupJarSourcesArtifact(String projectPackage, String projectVersion) {
         if (project.hasProperty("classes")) {
             String jarSourcesName = "sourcesJar"
-            Task sourcesTask = project.task([type: Jar, dependsOn: project.classes], jarSourcesName, {
-                classifier = 'sources'
-                from project.sourceSets.main.allSource
-                archiveName = project.name + "_V" + project.version + "_Sources.jar"
-            })
-            project.artifacts {
-                archives(sourcesTask) {
-                    name jarSourcesName
-                }
-            }
             project.uploadArchives {
                 repositories {
                     mavenDeployer {
@@ -201,15 +191,6 @@ class Deploy {
     private void setupAndroidJarSourcesArtifact(String variantName, String projectPackage, String projectVersion) {
         if (project.android.hasProperty("libraryVariants")) {
             String jarSourcesName = "${variantName}JarSources"
-            Task sourcesTask = project.task([type: Jar], jarSourcesName, {
-                from project.android.sourceSets.main.java.srcDirs
-                classifier = 'sources'
-            })
-            project.artifacts {
-                archives(sourcesTask) {
-                    name jarSourcesName
-                }
-            }
             project.uploadArchives {
                 repositories {
                     mavenDeployer {

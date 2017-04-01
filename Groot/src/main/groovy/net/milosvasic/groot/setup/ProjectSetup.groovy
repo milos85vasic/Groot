@@ -101,8 +101,66 @@ class ProjectSetup {
             }
         })
 
+        if (project.hasProperty("android")) {
+            String filetype = "aar"
+            if (project.android.hasProperty("applicationVariants")) {
+                filetype = "apk"
+            }
+            if (project.android.productFlavors.size() > 0) {
+                project.android.productFlavors.each {
+                    flavor ->
+                        project.android.buildTypes.each {
+                            buildType ->
+                                String capitalized = "${buildType.name}".substring(0, 1).toUpperCase()
+                                capitalized += "${buildType.name}".substring(1, "${buildType.name}".length())
+                                String variantName = "${flavor.name}$capitalized"
+                                setupAndroidJarSourcesArtifact(variantName, projectPackage, projectVersion)
+                        }
+                }
+            } else {
+                project.android.buildTypes.each {
+                    buildType ->
+                        String variantName = "${buildType.name}"
+                        setupAndroidJarSourcesArtifact(variantName, projectPackage, projectVersion)
+                }
+            }
+        } else {
+            setupJarSourcesArtifact()
+        }
+
         project.assemble.finalizedBy(project.copyRelease)
         isProjectSetup = true
+    }
+
+    private void setupJarSourcesArtifact() {
+        if (project.hasProperty("classes")) {
+            String jarSourcesName = "sourcesJar"
+            Task sourcesTask = project.task([type: Jar, dependsOn: project.classes], jarSourcesName, {
+                classifier = 'sources'
+                from project.sourceSets.main.allSource
+                archiveName = project.name + "_V" + project.version + "_Sources.jar"
+            })
+            project.artifacts {
+                archives(sourcesTask) {
+                    name jarSourcesName
+                }
+            }
+        }
+    }
+
+    private void setupAndroidJarSourcesArtifact(String variantName, String projectPackage, String projectVersion) {
+        if (project.android.hasProperty("libraryVariants")) {
+            String jarSourcesName = "${variantName}JarSources"
+            Task sourcesTask = project.task([type: Jar], jarSourcesName, {
+                from project.android.sourceSets.main.java.srcDirs
+                classifier = 'sources'
+            })
+            project.artifacts {
+                archives(sourcesTask) {
+                    name jarSourcesName
+                }
+            }
+        }
     }
 
 }
