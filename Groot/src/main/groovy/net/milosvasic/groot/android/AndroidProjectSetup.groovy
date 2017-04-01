@@ -2,7 +2,9 @@ package net.milosvasic.groot.android
 
 import net.milosvasic.groot.setup.ProjectSetup
 import org.gradle.api.Project
+import org.gradle.api.Task
 import org.gradle.api.tasks.Copy
+import org.gradle.api.tasks.bundling.Jar
 
 class AndroidProjectSetup extends ProjectSetup {
 
@@ -51,6 +53,7 @@ class AndroidProjectSetup extends ProjectSetup {
         setupBuildDestination()
         setupModuleRequire()
         setupReleaseCopy()
+        setupAndroidJarSourcesArtifact()
     }
 
     void setup(
@@ -102,6 +105,7 @@ class AndroidProjectSetup extends ProjectSetup {
         setupBuildDestination()
         setupModuleRequire()
         setupReleaseCopy()
+        setupAndroidJarSourcesArtifact()
     }
 
     void setupFlavor(String flavor) {
@@ -120,6 +124,13 @@ class AndroidProjectSetup extends ProjectSetup {
             ]
         }
         setupReleaseCopy(flavor)
+        project.android.buildTypes.each {
+            buildType ->
+                String capitalized = "${buildType.name}".substring(0, 1).toUpperCase()
+                capitalized += "${buildType.name}".substring(1, "${buildType.name}".length())
+                String variantName = "$flavor$capitalized"
+                setupAndroidJarSourcesArtifact(variantName)
+        }
     }
 
     void setupBuildVariant(String variant) {
@@ -257,6 +268,48 @@ class AndroidProjectSetup extends ProjectSetup {
             archiveType = "apk"
         }
         archiveType
+    }
+
+    private void setupAndroidJarSourcesArtifact(){
+        if (project.hasProperty("android")) {
+            String filetype = "aar"
+            if (project.android.hasProperty("applicationVariants")) {
+                filetype = "apk"
+            }
+            if (project.android.productFlavors.size() > 0) {
+                project.android.productFlavors.each {
+                    flavor ->
+                        project.android.buildTypes.each {
+                            buildType ->
+                                String capitalized = "${buildType.name}".substring(0, 1).toUpperCase()
+                                capitalized += "${buildType.name}".substring(1, "${buildType.name}".length())
+                                String variantName = "${flavor.name}$capitalized"
+                                setupAndroidJarSourcesArtifact(variantName)
+                        }
+                }
+            } else {
+                project.android.buildTypes.each {
+                    buildType ->
+                        String variantName = "${buildType.name}"
+                        setupAndroidJarSourcesArtifact(variantName)
+                }
+            }
+        }
+    }
+
+    private void setupAndroidJarSourcesArtifact(String variantName) {
+        if (project.android.hasProperty("libraryVariants")) {
+            String jarSourcesName = "${variantName}JarSources"
+            Task sourcesTask = project.task([type: Jar], jarSourcesName, {
+                from project.android.sourceSets.main.java.srcDirs
+                classifier = 'sources'
+            })
+            project.artifacts {
+                archives(sourcesTask) {
+                    name jarSourcesName
+                }
+            }
+        }
     }
 
 }
