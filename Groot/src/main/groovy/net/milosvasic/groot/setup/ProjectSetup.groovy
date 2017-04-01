@@ -100,19 +100,13 @@ class ProjectSetup {
                 println("We will not copy release archive for this build.")
             }
         })
-
-        if (!project.hasProperty("android")) {
-
-        } else {
-            setupJarSourcesArtifact()
-        }
-
+        setupJarSourcesArtifact()
         project.assemble.finalizedBy(project.copyRelease)
         isProjectSetup = true
     }
 
     private void setupJarSourcesArtifact() {
-        if (project.hasProperty("classes")) {
+        if (project.hasProperty("classes") && !project.hasProperty("android")) {
             String jarSourcesName = "sourcesJar"
             Task sourcesTask = project.task([type: Jar, dependsOn: project.classes], jarSourcesName, {
                 classifier = 'sources'
