@@ -151,6 +151,19 @@ class AndroidProjectSetup extends ProjectSetup {
         } else {
             bVariant.minifyEnabled(false)
         }
+
+        if (project.android.productFlavors.size() > 0) {
+            project.android.productFlavors.each {
+                flavor ->
+                    String capitalized = "$variant".substring(0, 1).toUpperCase()
+                    capitalized += "$variant".substring(1, "$variant".length())
+                    String variantName = "${flavor.name}$capitalized"
+                    setupAndroidJarSourcesArtifact(variantName)
+            }
+        } else {
+            String variantName = "$variant"
+            setupAndroidJarSourcesArtifact(variantName)
+        }
     }
 
     void sign(Map jksParams) {
