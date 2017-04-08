@@ -55,7 +55,7 @@ class ProjectSetup {
             project.version += "_${buildVariant}"
         }
         if (buildVariant == "DEV") {
-            project.version += "_${System.currentTimeMillis()}"
+            project.version += "_${System.currentTimeMillis()}" // FIXME: Solve problem caused on Android platform by increasing DEV version.
         }
 
         if (project.hasProperty("jar")) {
